@@ -118,6 +118,7 @@ i {
   background-color: #ffffff;
   text-align: center;
   transition: 0.2s;
+  cursor: pointer;
 }
 .film-card:hover {
   background: #eb469f;
