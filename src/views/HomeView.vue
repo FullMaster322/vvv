@@ -16,7 +16,7 @@ export default {
   methods: {
     cl(filmId) {
       console.log(filmId)
-      this.$router.push({ name: 'film', params: { id: filmId } });
+      this.$router.push({ name: 'about', params: { id: filmId } });
     },
     async loadNextPage() {
       if (this.page > this.maxPages) {
