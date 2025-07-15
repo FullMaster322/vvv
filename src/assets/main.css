@@ -1,0 +1,135 @@
+body {
+    background-color: rgb(238, 238, 238);
+    margin: 0;
+}
+i {
+    margin: 7px;
+  }
+.navbar {
+  justify-content: center;
+  align-items: center;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #141414;
+  color: #fff;
+  font-family: sans-serif;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  
+}
+.wdt {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 1280px;
+  margin-left: 50px;
+  margin-right: 34px;
+}
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  color: #FFFFFF99;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.nav-item:hover {
+ 
+  color: white;
+}
+.nav-item span {
+  font-size: 15px;
+}
+
+.icon {
+  margin-right: 20px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  background-color: #141414;
+  width: 380px;
+  height: 72px;
+}
+
+.search-bar input {
+  width: 295px;
+  padding-left: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: rgb(48, 48, 48);
+  border: 0.1px solid rgb(48, 48, 48);
+  
+}
+.search-bar button {
+    height: 30px;
+    background-color: rgb(48, 48, 48);
+    border: 3px solid rgb(48, 48, 48);
+    color: rgb(0, 0, 0);
+}
+.search-bar-mega {
+    background-color: rgb(48, 48, 48); 
+    border: 1px solid rgb(48, 48, 48);
+    border-radius: 5px;
+}
+
+.watch-free {
+  margin-left: 25px;
+  width: 121px;
+  border: 3px solid var(--plus-main, linear-gradient(90deg, #ff5c4d 0, #eb469f 26.56%, #8341ef 75%, #3f68f9 100%));
+  border-radius: 100px;
+  font-size: 11px;
+  height: 32px;
+  background: var(--plus-main, linear-gradient(90deg, #ff5c4d 0, #eb469f 26.56%, #8341ef 75%, #3f68f9 100%));
+  
+}
+.login {
+  color: #FFFFFF99;
+  text-decoration: none;
+  margin-left: 10px;
+  transition: 0.2s;
+} 
+.login:hover {
+  color: white;
+}
+
+.film-list {
+  margin-top: 100px;
+}
+.films {
+  margin-left: 50px;
+}
+.film-card {
+  width: 350px;
+  height: 600px;
+  display: inline-block;
+  margin: 5px;
+  background-color: #ffffff;
+  text-align: center;
+  transition: 0.2s;
+}
+.film-card:hover {
+  background: #eb469f;
+  color: white;
+  
+}
+.film-card img {
+  margin-top: 20px;
+  width: 300px;
+  height: 400px;
+}
+.film-info {
+  padding: 8px;
+  font-size: 14px;
+}
