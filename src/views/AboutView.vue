@@ -53,11 +53,16 @@ methods: {
 </template>
 
 <style>
+body {
+  background: #F4F4F4;
+}
 .about {
   margin-top: 120px;
   display: flex;
   margin-left: 320px;
   margin-right: 320px;
+  background-color: white;
+  width: 1280px
 }
 h1 {
   font-size: 50px;
@@ -68,5 +73,8 @@ img {
 }
 .info {
   margin-left: 40px
+}
+p {
+  margin-right: 40px
 }
 </style>

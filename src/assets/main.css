@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(238, 238, 238);
+    background-color: #F4F4F4;
     margin: 0;
 }
 i {
@@ -104,33 +104,3 @@ i {
   color: white;
 }
 
-.film-list {
-  margin-top: 100px;
-}
-.films {
-  margin-left: 50px;
-}
-.film-card {
-  width: 350px;
-  height: 600px;
-  display: inline-block;
-  margin: 5px;
-  background-color: #ffffff;
-  text-align: center;
-  transition: 0.2s;
-  cursor: pointer;
-}
-.film-card:hover {
-  background: #eb469f;
-  color: white;
-  
-}
-.film-card img {
-  margin-top: 20px;
-  width: 300px;
-  height: 400px;
-}
-.film-info {
-  padding: 8px;
-  font-size: 14px;
-}
