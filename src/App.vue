@@ -6,7 +6,7 @@
 <nav class="navbar">
   <div class="wdt">
   <div class="logo"><i class="fas fa-film"></i>ИНОПОИСК</div>
-  <div style="display: flex; width: 789.72px;">
+  <div style="display: flex; width: 760px;">
   <div class="nav-item" style="width: 168px; margin-left: 24px; margin-right: 20px;">
     <i class="fas fa-play"></i>
     <span>Онлайн-кинотеатр</span>
