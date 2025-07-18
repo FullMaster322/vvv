@@ -38,40 +38,51 @@ methods: {
 </script>
 
 <template>
+  
   <div class="about">
-    
-    
     <img :src="object.posterUrlPreview"/>
     <div class="info">
     <h1>{{ object.nameRu }} ({{ object.year }})</h1>
-    <p>Рейтинг: {{ object.ratingKinopoisk }}</p>
-    <p>Длительность: {{ object.filmLength }} минут</p>
-    <p style="margin-top: 20px">{{ object.description }}</p> 
+    <span class="raiting">16+</span>
     </div>
-    
   </div>
+
 </template>
 
 <style>
 body {
   background: #F4F4F4;
 }
+.raiting {
+  font-family: var(--font-family, "Graphik Kinopoisk LC Web", Tahoma, Arial, Verdana, sans-serif);
+    font-size: 18px;
+    font-weight: var(--font-weight-regular, 400);
+    line-height: 20px;
+    
+}
 .about {
-  margin-top: 120px;
   display: flex;
   margin-left: 320px;
   margin-right: 320px;
   background-color: white;
-  width: 1280px
+  width: 1280px;
+ 
 }
 h1 {
-  font-size: 50px;
+    font-family: var(--font-family, "Graphik Kinopoisk LC Web", Tahoma, Arial, Verdana, sans-serif);
+    font-size: 40px;
+    font-weight: var(--font-weight-bold, 700);
+    line-height: 48px;
+    letter-spacing: -.5px;
 }
 img {
-  width: 350px;
-  height: 450px;
+  margin-top: 112px;
+  width: 302px;
+  height: 430px;
+  margin-left: 40px;
 }
 .info {
+  margin-top: 112px;
   margin-left: 40px
 }
 p {

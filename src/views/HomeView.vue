@@ -142,8 +142,9 @@ export default {
   text-align: center;
   transition: 0.2s;
   cursor: pointer;
-  border: 3px solid #eb469f;
+  background-color: grey;
   border-radius: 20px;
+  color: white;
 }
 .film-card:hover {
   background: #eb469f;
@@ -151,7 +152,7 @@ export default {
   
 }
 .film-card img {
-  margin-top: 20px;
+  margin: 20px;
   width: 260px;
   height: 360px;
 }
