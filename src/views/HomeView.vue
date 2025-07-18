@@ -64,7 +64,7 @@ export default {
   <a href="#"><i class="fas fa-ticket-alt"></i> Билеты в кино</a>
   <a href="#"><i class="fas fa-photo-video"></i> Медиа</a>
 </div>
-<div class="film-list">
+<div class="film-list" style="width: 1280px; margin-left: 320px;">
    <div class="films">
    
       <div v-for="film in films" :key="film.filmId" class="film-card" v-on:click="cl(film.filmId)">
@@ -86,32 +86,37 @@ export default {
 <style>
 .links {
   position: fixed;
-  width: 250px;
   height: 100%;
   background-color: white;
-  margin-top: 72px;
+  margin-top: 15px;
   flex-flow: column wrap;
   display: flex;
   margin-left: 320px;
+  width: 235px;
 }
 .links::after {
   content: "";
   position: absolute;
-  top: -72px;
+  top: -15px;
   right: -1px;
-  width: 2px;
+  width: 1.5px;
   height: 100%;
   background-color: #ccc; /* цвет линии */
 }
 
 .links a {
-  margin-left: 34px;
-  font-size: 17px;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  line-height: 18px;
+  font-size: 15px;
   color: rgba(0, 0, 0, 0.6);
-  margin: 7px;
+  margin-left: 35px;
   cursor: pointer;
   transition: 0.2s;
   text-decoration: none;
+  margin-top: 10px;
+  font-family: var(--font-family, "Graphik Kinopoisk LC Web", Tahoma, Arial, Verdana, sans-serif);
 }
 .links a:hover {
   color: black;
@@ -119,24 +124,26 @@ export default {
 .film-list {
   align-items: center;
   justify-content: center;
-  margin-left: 280px;
+  margin-left: 200px;
   margin-right: 320px;
   background-color: white;
 }
 .films {
   width: 1030px;
-  margin-left: 350px;
+  margin-left: 255px;
   margin-top: 72px;
 }
 .film-card {
-  width: 290px;
-  height: 600px;
+  width: 300px;
+  height: 550px;
   display: inline-block;
-  margin: 5px;
+  margin: 18px;
   background-color: #ffffff;
   text-align: center;
   transition: 0.2s;
   cursor: pointer;
+  border: 3px solid #eb469f;
+  border-radius: 20px;
 }
 .film-card:hover {
   background: #eb469f;
