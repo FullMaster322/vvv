@@ -47,12 +47,60 @@ methods: {
     </div>
     <div class="box box2">
       
-    <div class="filmInfo">
+<div class="filmInfo">
   <span class="filmName">{{ object.nameRu }} ({{ object.year }})</span>
   <span class="originalName">
   {{ object.nameOriginal || '' }} 
   {{ object.ratingAgeLimits ? object.ratingAgeLimits.replace('age', '') : '' }}+
+  <br>
+  
 </span>
+<div style="display: inline;">
+  <button class="watch bigBtn">Буду смотреть</button>
+  <button class="watch miniBtn">•••</button>
+</div>
+  <h3 class="aboutFilm">О фильме</h3>
+  <div class="reqInfo">
+    <div class="leftInfo">
+      Год производства
+    </div>
+    <div class="rightInfo">
+      {{ object.year }}
+    </div>
+  </div>
+  <div class="reqInfo">
+    <div class="leftInfo">
+      Страна
+    </div>
+    <div class="rightInfo">
+      {{ object.countries }}
+    </div>
+  </div>
+   <div class="reqInfo">
+    <div class="leftInfo">
+      Жанр
+    </div>
+    <div class="rightInfo">
+      {{ object.genres }}
+    </div>
+  </div>
+   <div class="reqInfo">
+    <div class="leftInfo">
+      Возраст
+    </div>
+    <div class="rightInfo" style="border: 1px solid black; padding-left: 2px; padding-right: 2px; padding-top: 1px; padding-bottom: 1px;">
+      {{ object.ratingAgeLimits ? object.ratingAgeLimits.replace('age', '') : '' }}+
+    </div>
+  </div>
+    <div class="reqInfo">
+    <div class="leftInfo">
+      Рейтинг MPAA
+    </div>
+    <div class="rightInfo" style="border: 1px solid black; padding-left: 3px; padding-right: 3px; padding-top: 1px; padding-bottom: 1px;">
+      {{ object.ratingMpaa }}
+    </div>
+  </div>
+  
 </div>
 
     </div>
@@ -60,6 +108,7 @@ methods: {
   <div class="ratingBlock">
     <span class="raiting">{{ object.ratingKinopoisk }}</span>
     <span class="voteCount">{{ object.ratingKinopoiskVoteCount }} оценок</span>
+    <button class="gradeFilm">Оценить фильм</button>
   </div>
 </div>
 
@@ -79,16 +128,16 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  
   height: 100%;
 }
 
 .container {
   width: 1280px;
   display: flex;
-  gap: 10px; /* необязательный отступ между блоками */
+  gap: 10px; 
   padding-top: 112px;
   background-color: white;
+  height: 1008px;
 }
 
 .box1 {
@@ -104,7 +153,7 @@ body {
   width: 600px;
   height: 100px;
   background-color: white;
-  padding-left: 20px;
+  padding-left: 25px;
   padding-right: 0px;
   
 }
@@ -118,11 +167,11 @@ body {
 }
 .poster {
   width: 302px;
-  height: 430px;
+  height: 450px;
 }
 .filmInfo {
   display: flex;
-  flex-direction: column; /* вертикальное расположение */
+  flex-direction: column; 
 }
 .filmName {
   display: block;
@@ -162,4 +211,89 @@ body {
   color: rgba(0, 0, 0, .6);
   margin-top: -3px;
 }
+.gradeFilm {
+      margin-top: 10px;
+      font-family: var(--font-family, "Graphik Kinopoisk LC Web", Tahoma, Arial, Verdana, sans-serif);
+      font-weight: var(--font-weight-bold, 550);
+      width: 200px;
+      padding: 8px 8px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: .2s ease, transform .2s ease;
+      background: rgba(0, 0, 0, .05);
+      color: black;
+}
+    
+
+ .gradeFilm:hover {
+      transform: scale(1.05);
+      background: rgba(0, 0, 0, .09);
+    }
+  
+  .watch {
+    font-size: 16px;
+    margin-top: 20px;
+   
+    color: #000;
+    background: rgba(0, 0, 0, .05);
+    transition: .2s ease, transform .2s ease;
+    border-radius: 20px;
+    font-family: inherit;
+    
+    font-style: normal;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    outline: none;
+
+  }
+  
+  .bigBtn {
+    width: 200px;
+    padding-left: 22px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-right: 26px;
+    font-weight: var(--kp-ui-kit-button-font-weight, 600);
+  }
+  .bigBtn:hover {
+    transform: scale(1.05);
+    background: rgba(0, 0, 0, .09);
+  }
+  .miniBtn {
+    margin-left: 10px;
+    width: 52px;
+    height: 52px;
+    border-radius: 100%;
+    font-weight: var(--kp-ui-kit-button-font-weight, 100);
+  }
+  .miniBtn:hover {
+    background: rgba(0, 0, 0, .09);
+  }
+  .aboutFilm {
+    padding-top: 20px;
+    font-size: 22px;
+    line-height: 28px;
+    margin-block-start: 0;
+    font-family: var(--font-family, "Graphik Kinopoisk LC Web", Tahoma, Arial, Verdana, sans-serif);
+  }
+  .reqInfo {
+    display: flex;
+     font-family: var(--font-family, "Graphik Kinopoisk LC Web", Tahoma, Arial, Verdana, sans-serif);
+    font-size: 13px;
+    line-height: 18px;
+    margin-top: 10px;
+  }
+  .leftInfo {
+    width: 160px;
+    color: rgba(0, 0, 0, .6);
+    
+  }
+  .rightInfo {
+    color: black;
+  }
 </style>
