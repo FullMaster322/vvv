@@ -1,15 +1,32 @@
 <script>
 export default {
-  data() {
-    return{
-      filmId: null,
-      apiKey: 'e30ffed0-76ab-4dd6-b41f-4c9da2b2735b',
-      object: [],
-    }
-  },
+ data() {
+  return {
+    filmId: null,
+    apiKey: 'e30ffed0-76ab-4dd6-b41f-4c9da2b2735b',
+    object: {}
+  };
+},
+
 mounted() {
   this.filmId = this.$route.params.id;
   this.getFilmById();
+},
+computed: {
+ formattedCountries() {
+  if (!this.object.countries || !Array.isArray(this.object.countries)) {
+    return '';
+  }
+  return this.object.countries.map(item => item.country).join(', ');
+},
+formattedGenres() {
+  if (!this.object.genres || !Array.isArray(this.object.genres)) {
+    return '';
+  }
+  return this.object.genres.map(item => item.genre).join(', ');
+},
+
+
 },
 
 methods: {
@@ -73,7 +90,7 @@ methods: {
       Страна
     </div>
     <div class="rightInfo">
-      {{ object.countries }}
+      {{ formattedCountries }}
     </div>
   </div>
    <div class="reqInfo">
@@ -81,10 +98,10 @@ methods: {
       Жанр
     </div>
     <div class="rightInfo">
-      {{ object.genres }}
+      {{ formattedGenres }}
     </div>
   </div>
-   <div class="reqInfo">
+  <div class="reqInfo">
     <div class="leftInfo">
       Возраст
     </div>
@@ -92,12 +109,21 @@ methods: {
       {{ object.ratingAgeLimits ? object.ratingAgeLimits.replace('age', '') : '' }}+
     </div>
   </div>
-    <div class="reqInfo">
+  <div class="reqInfo">
     <div class="leftInfo">
       Рейтинг MPAA
     </div>
     <div class="rightInfo" style="border: 1px solid black; padding-left: 3px; padding-right: 3px; padding-top: 1px; padding-bottom: 1px;">
       {{ object.ratingMpaa }}
+    </div>
+  </div>
+   <div class="reqInfo">
+    <div class="leftInfo">
+      Время
+    </div>
+    <div class="rightInfo">
+      {{ Math.trunc(object.filmLength / 60) }} ч
+      {{ object.filmLength % 60 }} мин
     </div>
   </div>
   
