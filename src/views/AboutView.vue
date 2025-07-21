@@ -61,7 +61,9 @@ methods: {
   <div class="container">
     <div class="box box1">
       <img :src="object.posterUrlPreview" class="poster"/>
+      <button class="watch bigBtn" style="width: 302px">Добавить в папку</button>
     </div>
+    
     <div class="box box2">
       
 <div class="filmInfo">
@@ -77,7 +79,7 @@ methods: {
   <button class="watch miniBtn">•••</button>
 </div>
   <h3 class="aboutFilm">О фильме</h3>
-  <div class="reqInfo">
+  <div class="reqInfo" style="margin-top: -10px">
     <div class="leftInfo">
       Год производства
     </div>
@@ -163,7 +165,7 @@ body {
   gap: 10px; 
   padding-top: 112px;
   background-color: white;
-  height: 1008px;
+  height: 87.5vh;
 }
 
 .box1 {
@@ -301,7 +303,7 @@ body {
     background: rgba(0, 0, 0, .09);
   }
   .aboutFilm {
-    padding-top: 20px;
+    padding-top: 50px;
     font-size: 22px;
     line-height: 28px;
     margin-block-start: 0;
@@ -312,7 +314,7 @@ body {
      font-family: var(--font-family, "Graphik Kinopoisk LC Web", Tahoma, Arial, Verdana, sans-serif);
     font-size: 13px;
     line-height: 18px;
-    margin-top: 10px;
+    margin-top: 15px;
   }
   .leftInfo {
     width: 160px;

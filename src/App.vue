@@ -5,7 +5,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <nav class="navbar">
   <div class="wdt">
-  <div class="logo"><i class="fas fa-film"></i>ИНОПОИСК</div>
+  <a class="logo" href="/">
+  <img src="./assets/logo.svg" width="164px" height="36px" style="margin: 0; padding-top: 10px;"/>
+  </a>
+
   <div style="display: flex; width: 760px;">
   <div class="nav-item" style="width: 168px; margin-left: 24px; margin-right: 20px;">
     <i class="fas fa-play"></i>
