@@ -27,7 +27,7 @@ export default {
 
       try {
         const response = await fetch(
-          `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${this.page}`,
+          `https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_250_MOVIES&page=${this.page}`,
           {
             method: 'GET',
             headers: {
@@ -37,9 +37,9 @@ export default {
           }
         );
         const data = await response.json();
-        this.films.push(...data.films);
+        this.films.push(...data.items);
         this.page++;
-
+        console.log(data);
         setTimeout(this.loadNextPage, 1000);
       } catch (error) {
         console.error(`error:`, error);
@@ -67,13 +67,13 @@ export default {
 <div class="film-list" style="width: 1280px; margin-left: 320px;">
    <div class="films">
    
-      <div v-for="film in films" :key="film.filmId" class="film-card" v-on:click="cl(film.filmId)">
+      <div v-for="film in films" :key="film.kinopoiskId" class="film-card" v-on:click="cl(film.kinopoiskId)">
         <img :src="film.posterUrlPreview" :alt="film.nameRu" />
         <div class="film-info">
           <strong>{{ film.nameRu }}</strong>
-          <p>id: {{ film.filmId }}</p>
+          <p>id: {{ film.kinopoiskId }}</p>
           <p>Год: {{ film.year }}</p>
-          <p>Рейтинг: {{ film.rating && film.rating !== 'null' ? film.rating : 'неизвестен' }}</p>
+          <p>Рейтинг: {{ film.ratingKinopoisk && film.ratingKinopoisk !== 'null' ? film.ratingKinopoisk : 'неизвестен' }}</p>
         </div>
       </div>
      

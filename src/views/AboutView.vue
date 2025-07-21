@@ -2,14 +2,14 @@
 export default {
  data() {
   return {
-    filmId: null,
+    kinopoiskId: null,
     apiKey: 'e30ffed0-76ab-4dd6-b41f-4c9da2b2735b',
     object: {}
   };
 },
 
 mounted() {
-  this.filmId = this.$route.params.id;
+  this.kinopoiskId = this.$route.params.id;
   this.getFilmById();
 },
 computed: {
@@ -33,7 +33,7 @@ methods: {
   async getFilmById() {
     try {
       const response = await fetch(
-        `https://kinopoiskapiunofficial.tech/api/v2.2/films/${this.filmId}`,
+        `https://kinopoiskapiunofficial.tech/api/v2.2/films/${this.kinopoiskId}`,
         {
           method: 'GET',
           headers: {
