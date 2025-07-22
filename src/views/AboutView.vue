@@ -4,13 +4,16 @@ export default {
   return {
     kinopoiskId: null,
     apiKey: 'e30ffed0-76ab-4dd6-b41f-4c9da2b2735b',
-    object: {}
+    object: {},
+    staff: {},
+    actors: [],
   };
 },
 
 mounted() {
   this.kinopoiskId = this.$route.params.id;
   this.getFilmById();
+  this.getStaffById();
 },
 computed: {
  formattedCountries() {
@@ -50,7 +53,30 @@ methods: {
     } catch (error) {
       console.error(error);
     }
+  },
+ async getStaffById() {
+  try {
+    const getStaff = await fetch(
+      `https://kinopoiskapiunofficial.tech/api/v1/staff?filmId=${this.kinopoiskId}`,
+      {
+        method: 'GET',
+        headers: {
+          'X-API-KEY': this.apiKey,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    const staffData = await getStaff.json();
+    
+    this.actors = staffData.filter(person => person.professionText === "Актеры").slice(0, 10);;
+    
+
+  } catch (error) {
+    console.error(error);
   }
+}
+
 }
 };
 </script>
@@ -103,6 +129,14 @@ methods: {
       {{ formattedGenres }}
     </div>
   </div>
+   <div class="reqInfo">
+    <div class="leftInfo" style="min-width: 160px; ">
+      Слоган
+    </div>
+    <div class="rightInfo" style="color: rgba(0, 0, 0, .6); font-size: 14px">
+      "{{ object.slogan !== 'null' ? object.slogan: 'нет слогана'}}"
+    </div>
+  </div>
   <div class="reqInfo">
     <div class="leftInfo">
       Возраст
@@ -137,6 +171,13 @@ methods: {
     <span class="raiting">{{ object.ratingKinopoisk }}</span>
     <span class="voteCount">{{ object.ratingKinopoiskVoteCount }} оценок</span>
     <button class="gradeFilm">Оценить фильм</button>
+    <span class="voteCount" style="padding-top: 10px">{{ object.reviewsCount && object.reviewsCount !== 'null' ? object.reviewsCount : 'неизвестно сколько' }} рецензий</span>
+    <span class="inMainRole">В главных ролях ></span>
+    <div style="padding-top: 7px">
+    <div class="actorInfo" v-for="actor in actors" :key="actor.staffId" style="">
+      {{ actor.nameRu || actor.nameEn  }}
+    </div>
+  </div>
   </div>
 </div>
 
@@ -311,7 +352,7 @@ body {
   }
   .reqInfo {
     display: flex;
-     font-family: var(--font-family, "Graphik Kinopoisk LC Web", Tahoma, Arial, Verdana, sans-serif);
+    font-family: var(--font-family, "Graphik Kinopoisk LC Web", Tahoma, Arial, Verdana, sans-serif);
     font-size: 13px;
     line-height: 18px;
     margin-top: 15px;
@@ -323,5 +364,24 @@ body {
   }
   .rightInfo {
     color: black;
+  }
+  .actorInfo {
+    list-style: none; 
+    font-family: var(--font-family, "Graphik Kinopoisk LC Web", Tahoma, Arial, Verdana, sans-serif);
+    font-size: 13px;
+    text-decoration: none;
+    word-break: break-word;
+    color: #000;
+    margin-top: 5px;
+  }
+  .inMainRole {
+    padding-top: 100px;
+    font-size: 15px;
+    line-height: 20px;
+    font-family: var(--font-family, "Graphik Kinopoisk LC Web", Tahoma, Arial, Verdana, sans-serif);
+    font-weight: var(--font-weight-semibold, 600);
+    text-decoration: none;
+    color: inherit;
+    padding-inline-end: 16px;
   }
 </style>
