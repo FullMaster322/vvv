@@ -7,6 +7,9 @@ export default {
     object: {},
     staff: {},
     actors: [],
+    actorsCount: 0,
+    dubbingActors: [],
+    dubbingActorsCount: 0,
   };
 },
 
@@ -68,10 +71,27 @@ methods: {
     );
 
     const staffData = await getStaff.json();
+
     
-    this.actors = staffData.filter(person => person.professionText === "Актеры").slice(0, 10);;
+    
+    this.actors = staffData.filter(person => person.professionText === "Актеры");
+
+    this.actorsCount = this.actors.length;
+
+    this.actors = this.actors.slice(0, 10);
+
     
 
+    this.dubbingActors = staffData.filter(person => person.professionText === "Режиссеры дубляжа");
+
+    this.dubbingActorsCount = this.dubbingActors.length;
+
+    this.dubbingActors = this.dubbingActors.slice(0, 5);
+    
+    console.log(staffData );
+    
+
+    console.log(this.dubbingActors[0].nameRu);
   } catch (error) {
     console.error(error);
   }
@@ -172,17 +192,36 @@ methods: {
     <span class="voteCount">{{ object.ratingKinopoiskVoteCount }} оценок</span>
     <button class="gradeFilm">Оценить фильм</button>
     <span class="voteCount" style="padding-top: 10px">{{ object.reviewsCount && object.reviewsCount !== 'null' ? object.reviewsCount : 'неизвестно сколько' }} рецензий</span>
-    <span class="inMainRole">В главных ролях ></span>
-    <div style="padding-top: 7px">
-    <div class="actorInfo" v-for="actor in actors" :key="actor.staffId" style="">
-      {{ actor.nameRu || actor.nameEn  }}
-    </div>
+
+   
+<span class="inMainRole">В главных ролях ></span>
+<div style="padding-top: 5px">
+  <div class="actorInfo" v-for="actor in actors" :key="actor.staffId">
+    {{ actor.nameRu || actor.nameEn }}
+  </div>
+  <div class="actorsCount">
+    {{ this.actorsCount }} актеров
+  </div>
+</div>
+
+
+<span class="inMainRole" style="padding-top: 20px">Режиссёры дубляжа ></span>
+<div style="padding-top: 5px">
+  <div class="actorInfo" v-for="dubbingActor in dubbingActors" :key="dubbingActor.staffId">
+    {{ dubbingActor.nameRu || dubbingActor.nameEn }}
+  </div>
+    <div class="actorsCount">
+    {{ this.dubbingActorsCount }} актеров
+  </div>
+</div>
+
+  
   </div>
   </div>
 </div>
 
   </div>
-</div>
+
 
 
 
@@ -375,7 +414,7 @@ body {
     margin-top: 5px;
   }
   .inMainRole {
-    padding-top: 100px;
+    padding-top: 70px;
     font-size: 15px;
     line-height: 20px;
     font-family: var(--font-family, "Graphik Kinopoisk LC Web", Tahoma, Arial, Verdana, sans-serif);
@@ -383,5 +422,12 @@ body {
     text-decoration: none;
     color: inherit;
     padding-inline-end: 16px;
+  }
+  .actorsCount {
+    font-family: var(--font-family, "Graphik Kinopoisk LC Web", Tahoma, Arial, Verdana, sans-serif);
+    font-size: 13px;
+    color: #f50;
+    background-color: transparent;
+    padding-top: 10px;
   }
 </style>
