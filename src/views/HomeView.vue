@@ -53,8 +53,9 @@ export default {
 </script>
 
 <template>
- <div class="links">
-  <a href="/"><i class="fas fa-home"></i> Главная</a>
+  <div style="width: 1280px;">
+ <div class="links" style="margin-left: 20px; margin-top: 0px">
+  <a href="/"><i class="fas fa-home" style="margin-top: 20px"></i> Главная</a>
   <a href="#"><i class="fas fa-tv"></i> Онлайн-кинотеатр</a>
   <a href="#"><i class="fas fa-film"></i> Фильмы</a>
   <a href="#"><i class="fas fa-video"></i> Сериалы</a>
@@ -64,8 +65,8 @@ export default {
   <a href="#"><i class="fas fa-ticket-alt"></i> Билеты в кино</a>
   <a href="#"><i class="fas fa-photo-video"></i> Медиа</a>
 </div>
-<div class="film-list" style="width: 1280px; margin-left: 320px;">
-   <div class="films">
+<div class="film-list" style="width: 1120px; ">
+   <div class="films" style="margin-left: 50px;">
    
       <div v-for="film in films" :key="film.kinopoiskId" class="film-card" v-on:click="cl(film.kinopoiskId)">
         <img :src="film.posterUrlPreview" :alt="film.nameRu" />
@@ -80,10 +81,12 @@ export default {
     </div>
     
 </div>
+</div>
 
 </template>
 
 <style>
+
 .links {
   position: fixed;
   height: 100%;
@@ -97,11 +100,11 @@ export default {
 .links::after {
   content: "";
   position: absolute;
-  top: -15px;
+  top: 0;
   right: -1px;
   width: 1.5px;
   height: 100%;
-  background-color: #ccc; /* цвет линии */
+  background-color: #ccc; 
 }
 
 .links a {

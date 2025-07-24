@@ -10,6 +10,11 @@ export default {
     actorsCount: 0,
     dubbingActors: [],
     dubbingActorsCount: 0,
+    directors: [],
+    screenwriters: [],
+    produsers: [],
+    operators: [],
+    compositors: [],
   };
 },
 
@@ -87,9 +92,25 @@ methods: {
     this.dubbingActorsCount = this.dubbingActors.length;
 
     this.dubbingActors = this.dubbingActors.slice(0, 5);
-    
-    console.log(staffData );
-    
+
+
+    this.directors = staffData.filter(person => person.professionText === "Режиссеры");
+    this.directors = this.directors.slice(0, 3);
+
+
+    this.screenwriters = staffData.filter(person => person.professionText === "Сценаристы");
+    this.screenwriters = this.screenwriters.slice(0, 3);
+
+    this.produsers = staffData.filter(person => person.professionText === "Продюсеры");
+    this.produsers = this.produsers.slice(0, 3);
+
+    this.operators = staffData.filter(person => person.professionText === "Операторы");
+    this.operators = this.operators.slice(0, 3);
+
+    this.compositors = staffData.filter(person => person.professionText === "Композиторы");
+    this.compositors = this.compositors.slice(0, 3);
+
+    console.log(staffData);
 
     console.log(this.dubbingActors[0].nameRu);
   } catch (error) {
@@ -156,6 +177,46 @@ methods: {
     <div class="rightInfo" style="color: rgba(0, 0, 0, .6); font-size: 14px">
       "{{ object.slogan !== 'null' ? object.slogan: 'нет слогана'}}"
     </div>
+  </div>
+  <div class="reqInfo">
+    <div class="leftInfo" style="min-width: 160px; ">
+      Режиссеры
+    </div>
+    <div class="rightInfo" v-for="director in directors" :key="director.staffId">
+    {{ director.nameRu || director.nameEn }} &nbsp;
+  </div>
+  </div>
+   <div class="reqInfo">
+    <div class="leftInfo" style="min-width: 160px; ">
+      Сценарий
+    </div>
+    <div class="rightInfo" v-for="screenwriter in screenwriters" :key="screenwriter.staffId">
+    {{ screenwriter.nameRu || screenwriter.nameEn }} &nbsp;
+  </div>
+  </div>
+   <div class="reqInfo">
+    <div class="leftInfo" style="min-width: 160px; ">
+      Продюссеры
+    </div>
+    <div class="rightInfo" v-for="produser in produsers" :key="produser.staffId">
+    {{ produser.nameRu || produser.nameEn }} &nbsp;
+  </div>
+  </div>
+    <div class="reqInfo">
+    <div class="leftInfo" style="min-width: 160px; ">
+      Операторы
+    </div>
+    <div class="rightInfo" v-for="operator in operators" :key="operator.staffId">
+    {{ operator.nameRu || operator.nameEn }} &nbsp;
+  </div>
+  </div>
+    <div class="reqInfo">
+    <div class="leftInfo" style="min-width: 160px; ">
+      Композиторы
+    </div>
+    <div class="rightInfo" v-for="compositor in compositors" :key="compositor.staffId">
+    {{ compositor.nameRu || compositor.nameEn }} &nbsp;
+  </div>
   </div>
   <div class="reqInfo">
     <div class="leftInfo">
@@ -245,7 +306,7 @@ body {
   gap: 10px; 
   padding-top: 112px;
   background-color: white;
-  height: 87.5vh;
+  height: 150vh;
 }
 
 .box1 {
