@@ -17,6 +17,7 @@ export default {
     compositors: [],
     artists: [],
     montagers: [],
+    budget: {},
   };
 },
 
@@ -24,6 +25,7 @@ mounted() {
   this.kinopoiskId = this.$route.params.id;
   this.getFilmById();
   this.getStaffById();
+  this.getBudgetById();
 },
 computed: {
  formattedCountries() {
@@ -57,7 +59,7 @@ methods: {
       );
 
       const data = await response.json();
-      console.log(data); 
+      
       this.object = data;
       
     } catch (error) {
@@ -118,13 +120,36 @@ methods: {
     this.montagers = staffData.filter(person => person.professionText === "Монтажеры");
     this.montagers = this.montagers.slice(0, 3);
 
-    console.log(staffData);
+    
 
-    console.log(this.dubbingActors[0].nameRu);
+    
   } catch (error) {
     console.error(error);
   }
-}
+},
+
+ async getBudgetById() {
+    try {
+      const getBudget = await fetch(
+        `https://kinopoiskapiunofficial.tech/api/v2.2/films/${this.kinopoiskId}/box_office`,
+        {
+          method: 'GET',
+          headers: {
+            'X-API-KEY': this.apiKey,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      const getBudgetData = await getBudget.json();
+      
+      this.budget = getBudgetData;
+      console.log(this.budget);
+      
+    } catch (error) {
+      console.error(error);
+    }
+  },
 
 }
 };
@@ -242,6 +267,43 @@ methods: {
     {{ montager.nameRu || montager.nameEn }} &nbsp;
   </div>
   </div>
+ <div class="reqInfo">
+  <div class="leftInfo" style="min-width: 160px;">
+    Бюджет
+  </div>
+  <div class="rightInfo" style=" white-space: nowrap;">
+    {{ budget?.items?.length ? budget.items[0].symbol : '—' }}{{ budget?.items?.length ? budget.items[0].amount : '—' }}
+     
+  </div>
+</div>
+<div class="reqInfo">
+  <div class="leftInfo" style="min-width: 160px;">
+    Сборы в США
+  </div>
+  <div class="rightInfo" style=" white-space: nowrap;">
+    {{ budget?.items?.length ? budget.items[2].symbol : '—' }}{{ budget?.items?.length ? budget.items[2].amount : '—' }}
+     
+  </div>
+</div>
+<div class="reqInfo">
+  <div class="leftInfo" style="min-width: 160px;">
+    Сборы в мире
+  </div>
+  <div class="rightInfo" style=" white-space: nowrap;">
+    + {{ budget?.items?.length ? budget.items[3].symbol : '—' }}{{ budget?.items?.length ? budget.items[3].amount : '—' }}
+     
+  </div>
+</div>
+<div class="reqInfo">
+  <div class="leftInfo" style="min-width: 160px;">
+    Сборы в России
+  </div>
+  <div class="rightInfo" style=" white-space: nowrap;">
+    {{ budget?.items?.length ? budget.items[1].symbol : '—' }}{{ budget?.items?.length ? budget.items[1].amount : '—' }}
+     
+  </div>
+</div>
+
   <div class="reqInfo">
     <div class="leftInfo">
       Возраст
