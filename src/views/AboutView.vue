@@ -15,6 +15,8 @@ export default {
     produsers: [],
     operators: [],
     compositors: [],
+    artists: [],
+    montagers: [],
   };
 },
 
@@ -109,6 +111,12 @@ methods: {
 
     this.compositors = staffData.filter(person => person.professionText === "Композиторы");
     this.compositors = this.compositors.slice(0, 3);
+
+    this.artists = staffData.filter(person => person.professionText === "Художники");
+    this.artists = this.artists.slice(0, 3);
+
+    this.montagers = staffData.filter(person => person.professionText === "Монтажеры");
+    this.montagers = this.montagers.slice(0, 3);
 
     console.log(staffData);
 
@@ -216,6 +224,22 @@ methods: {
     </div>
     <div class="rightInfo" v-for="compositor in compositors" :key="compositor.staffId">
     {{ compositor.nameRu || compositor.nameEn }} &nbsp;
+  </div>
+  </div>
+  <div class="reqInfo">
+    <div class="leftInfo" style="min-width: 160px; ">
+      Художники
+    </div>
+    <div class="rightInfo" v-for="artist in artists" :key="artist.staffId">
+    {{ artist.nameRu || artist.nameEn }} &nbsp;
+  </div>
+  </div>
+  <div class="reqInfo">
+    <div class="leftInfo" style="min-width: 160px; ">
+      Монтаж
+    </div>
+    <div class="rightInfo" v-for="montager in montagers" :key="montager.staffId">
+    {{ montager.nameRu || montager.nameEn }} &nbsp;
   </div>
   </div>
   <div class="reqInfo">
