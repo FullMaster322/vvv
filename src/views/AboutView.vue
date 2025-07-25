@@ -45,6 +45,10 @@ formattedGenres() {
 },
 
 methods: {
+  personCl(staffId) {
+    console.log(staffId);
+    this.$router.push({ name: 'person', params: { idPerson: staffId } });
+  },
   async getFilmById() {
     try {
       const response = await fetch(
@@ -81,7 +85,7 @@ methods: {
 
     const staffData = await getStaff.json();
 
-    
+    console.log(staffData);
     
     this.actors = staffData.filter(person => person.professionText === "Актеры");
 
@@ -215,7 +219,7 @@ methods: {
     <div class="leftInfo" style="min-width: 160px; ">
       Режиссеры
     </div>
-    <div class="rightInfo" v-for="director in directors" :key="director.staffId">
+    <div class="rightInfo" v-for="director in directors" :key="director.staffId" v-on:click="personCl(director.staffId)">
     {{ director.nameRu || director.nameEn }} &nbsp;
   </div>
   </div>
@@ -223,7 +227,7 @@ methods: {
     <div class="leftInfo" style="min-width: 160px; ">
       Сценарий
     </div>
-    <div class="rightInfo" v-for="screenwriter in screenwriters" :key="screenwriter.staffId">
+    <div class="rightInfo" v-for="screenwriter in screenwriters" :key="screenwriter.staffId" v-on:click="personCl(screenwriter.staffId)">
     {{ screenwriter.nameRu || screenwriter.nameEn }} &nbsp;
   </div>
   </div>
@@ -231,7 +235,7 @@ methods: {
     <div class="leftInfo" style="min-width: 160px; ">
       Продюссеры
     </div>
-    <div class="rightInfo" v-for="produser in produsers" :key="produser.staffId">
+    <div class="rightInfo" v-for="produser in produsers" :key="produser.staffId" v-on:click="personCl(produser.staffId)">
     {{ produser.nameRu || produser.nameEn }} &nbsp;
   </div>
   </div>
@@ -239,7 +243,7 @@ methods: {
     <div class="leftInfo" style="min-width: 160px; ">
       Операторы
     </div>
-    <div class="rightInfo" v-for="operator in operators" :key="operator.staffId">
+    <div class="rightInfo" v-for="operator in operators" :key="operator.staffId" v-on:click="personCl(operator.staffId)">
     {{ operator.nameRu || operator.nameEn }} &nbsp;
   </div>
   </div>
@@ -247,7 +251,7 @@ methods: {
     <div class="leftInfo" style="min-width: 160px; ">
       Композиторы
     </div>
-    <div class="rightInfo" v-for="compositor in compositors" :key="compositor.staffId">
+    <div class="rightInfo" v-for="compositor in compositors" :key="compositor.staffId" v-on:click="personCl(compositor.staffId)">
     {{ compositor.nameRu || compositor.nameEn }} &nbsp;
   </div>
   </div>
@@ -255,7 +259,7 @@ methods: {
     <div class="leftInfo" style="min-width: 160px; ">
       Художники
     </div>
-    <div class="rightInfo" v-for="artist in artists" :key="artist.staffId">
+    <div class="rightInfo" v-for="artist in artists" :key="artist.staffId" v-on:click="personCl(artist.staffId)">
     {{ artist.nameRu || artist.nameEn }} &nbsp;
   </div>
   </div>
@@ -263,7 +267,7 @@ methods: {
     <div class="leftInfo" style="min-width: 160px; ">
       Монтаж
     </div>
-    <div class="rightInfo" v-for="montager in montagers" :key="montager.staffId">
+    <div class="rightInfo" v-for="montager in montagers" :key="montager.staffId" v-on:click="personCl(montager.staffId)">
     {{ montager.nameRu || montager.nameEn }} &nbsp;
   </div>
   </div>
@@ -343,7 +347,7 @@ methods: {
    
 <span class="inMainRole">В главных ролях ></span>
 <div style="padding-top: 5px">
-  <div class="actorInfo" v-for="actor in actors" :key="actor.staffId">
+  <div class="actorInfo rightInfo" v-for="actor in actors" :key="actor.staffId" v-on:click="personCl(actor.staffId)">
     {{ actor.nameRu || actor.nameEn }}
   </div>
   <div class="actorsCount">
@@ -354,7 +358,7 @@ methods: {
 
 <span class="inMainRole" style="padding-top: 20px">Режиссёры дубляжа ></span>
 <div style="padding-top: 5px">
-  <div class="actorInfo" v-for="dubbingActor in dubbingActors" :key="dubbingActor.staffId">
+  <div class="actorInfo rightInfo" v-for="dubbingActor in dubbingActors" :key="dubbingActor.staffId" v-on:click="personCl(dubbingActor.staffId)">
     {{ dubbingActor.nameRu || dubbingActor.nameEn }}
   </div>
     <div class="actorsCount">
@@ -550,6 +554,11 @@ body {
   }
   .rightInfo {
     color: black;
+    cursor: pointer;
+    transition: 0.1s;
+  }
+   .rightInfo:hover {
+    color: #f50;
   }
   .actorInfo {
     list-style: none; 
