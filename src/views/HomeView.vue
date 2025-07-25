@@ -53,21 +53,21 @@ export default {
 </script>
 
 <template>
-  <div style="width: 1280px;">
- <div class="links" style="margin-left: 20px; margin-top: 0px">
-  <a href="/"><i class="fas fa-home" style="margin-top: 20px"></i> Главная</a>
-  <a href="#"><i class="fas fa-tv"></i> Онлайн-кинотеатр</a>
-  <a href="#"><i class="fas fa-film"></i> Фильмы</a>
-  <a href="#"><i class="fas fa-video"></i> Сериалы</a>
-  <a href="#"><i class="fas fa-broadcast-tower"></i> Телеканалы</a>
-  <a href="#"><i class="fas fa-running"></i> Спорт</a>
-  <a href="#"><i class="fas fa-tags"></i> Подписки</a>
-  <a href="#"><i class="fas fa-ticket-alt"></i> Билеты в кино</a>
-  <a href="#"><i class="fas fa-photo-video"></i> Медиа</a>
-</div>
-<div class="film-list" style="width: 1120px; ">
-   <div class="films" style="margin-left: 50px;">
-   
+<div style="width: 1280px; margin: 0 auto;">
+  <div class="links" style="margin-left: 20px; margin-top: 0px">
+    <a href="/"><i class="fas fa-home" style="margin-top: 20px"></i> Главная</a>
+    <a href="#"><i class="fas fa-tv"></i> Онлайн-кинотеатр</a>
+    <a href="#"><i class="fas fa-film"></i> Фильмы</a>
+    <a href="#"><i class="fas fa-video"></i> Сериалы</a>
+    <a href="#"><i class="fas fa-broadcast-tower"></i> Телеканалы</a>
+    <a href="#"><i class="fas fa-running"></i> Спорт</a>
+    <a href="#"><i class="fas fa-tags"></i> Подписки</a>
+    <a href="#"><i class="fas fa-ticket-alt"></i> Билеты в кино</a>
+    <a href="#"><i class="fas fa-photo-video"></i> Медиа</a>
+  </div>
+
+  <div class="film-list">
+    <div class="films" style="margin-left: 50px;">
       <div v-for="film in films" :key="film.kinopoiskId" class="film-card" v-on:click="cl(film.kinopoiskId)">
         <img :src="film.posterUrlPreview" :alt="film.nameRu" />
         <div class="film-info">
@@ -77,15 +77,49 @@ export default {
           <p>Рейтинг: {{ film.ratingKinopoisk && film.ratingKinopoisk !== 'null' ? film.ratingKinopoisk : 'неизвестен' }}</p>
         </div>
       </div>
-     
     </div>
-    
-</div>
+  </div>
 </div>
 
 </template>
 
 <style>
+
+.main-container {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .main-container {
+    width: 100%;
+    padding: 0 20px;
+  }
+  .links {
+    margin-left: 10px;
+  }
+  .films {
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .links a {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .films {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 0;
+    justify-content: center;
+  }
+  .film-card {
+    width: 100%;
+    max-width: 300px;
+    margin: 10px;
+  }
+}
 
 .links {
   position: fixed;
