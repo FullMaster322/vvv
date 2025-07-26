@@ -620,8 +620,8 @@ body {
     cursor: pointer;
   }
   .infoBtn li::before {
-    content: "•";          /* можно заменить на другую символику */
-  color: red;           /* цвет маркера */
-  margin-right: 6px;  
+    content: "•";          
+    color: red;           
+    margin-right: 6px;  
   }
 </style>

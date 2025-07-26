@@ -54,7 +54,15 @@ methods: {
     <div class="box box1">
       <img :src="actor.posterUrl" class="poster" />
       <button class="watch bigBtn" style="width: 302px">Добавить в папку</button>
+      <img src="../assets/vkLogo.png" class="messIMG" style="margin-left: 70px"/>
+      <img style="margin-left: 7px" src="../assets/twitterLogo.jpg" class="messIMG"/>
+      <img style="margin-left: 7px" src="../assets/telegramLogo.png" class="messIMG"/>
+        <ul class="infoBtn" style="margin-left: 35px">
+        <li>Нашли ошибку?</li>
+        <li style="margin-left: 10px">Добавить инфо</li>
+      </ul>
     </div>
+    
 
     
     <div class="filmInfo" style="margin-left: 10px">
