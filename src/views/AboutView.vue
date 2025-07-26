@@ -166,7 +166,19 @@ methods: {
     <div class="box box1">
       <img :src="object.posterUrlPreview" class="poster"/>
       <button class="watch bigBtn" style="width: 302px">Добавить в папку</button>
+      <div style="display: inline; margin-left: 60px">
+      <img src="../assets/vkLogo.png" class="messIMG"/>
+      <img style="margin-left: 7px" src="../assets/twitterLogo.jpg" class="messIMG"/>
+      <img style="margin-left: 7px" src="../assets/telegramLogo.png" class="messIMG"/>
+      <ul class="infoBtn">
+        <li>Нашли ошибку?</li>
+        <li style="margin-left: 10px">Добавить инфо</li>
+      </ul>
+      </div>
     </div>
+   
+      
+    
     
     <div class="box box2">
       
@@ -585,5 +597,31 @@ body {
     color: #f50;
     background-color: transparent;
     padding-top: 10px;
+  }
+  .messIMG {
+    width: 52px; 
+    height: 52px; 
+    border-radius: 100%; 
+    margin-top: 72px;
+    cursor: pointer;
+    transition: 0.1s;
+  }
+   .messIMG:hover {
+    transform: scale(1.05);
+  }
+  .infoBtn {
+    display: flex; 
+    margin-top: 20px; 
+    font-size: 15px;
+    list-style-position: inside; 
+    padding-left: 0; 
+    list-style: none;
+    margin-left: 35px;
+    cursor: pointer;
+  }
+  .infoBtn li::before {
+    content: "•";          /* можно заменить на другую символику */
+  color: red;           /* цвет маркера */
+  margin-right: 6px;  
   }
 </style>
