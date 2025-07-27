@@ -83,9 +83,10 @@ export default {
     </div>
      <div :style="{ display: isVisible ? 'block' : 'none' }" 
      style="position: fixed; top: 60px; width: 350px; background-color: white;" 
+     class="search-dropdown"
      >
      
-    <div v-for="film in searchFilms.films" :key="film.filmId" style="margin-bottom: 10px; border-bottom: 1px solid #ccc; cursor: pointer;" v-on:click="cl(film.filmId)">
+    <div v-for="film in searchFilms.films" :key="film.filmId" style="margin-bottom: 10px; border-bottom: 1px solid #ccc; cursor: pointer;" v-on:click="cl(film.filmId)"> 
     <div style="display: flex">
       <img :src="film.posterUrl" style="width: 32px; height: 48px; padding: 5px"/>
       <div>

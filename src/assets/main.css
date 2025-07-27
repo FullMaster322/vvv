@@ -56,6 +56,26 @@ color: rgb(175, 175, 175);
   
 }
 
+.search-bar-mega:focus-within .search-results {
+  display: block;
+}
+
+.search-dropdown {
+  position: fixed;
+  top: 60px;
+  width: 350px;
+  background-color: white;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.2s ease, opacity 0.2s ease;
+}
+
+.search-bar-mega:focus-within + .search-dropdown {
+  visibility: visible;
+  opacity: 1;
+}
+
+
 .navbar {
   display: flex;
   justify-content: center;
