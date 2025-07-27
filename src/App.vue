@@ -39,7 +39,7 @@ export default {
 
         const data = await response.json();
         this.searchFilms = data;
-
+        console.log(data);
         this.searchFilms.films = this.searchFilms.films.slice(0, 8);
 
       } catch (error) {
@@ -82,14 +82,22 @@ export default {
    
     </div>
      <div :style="{ display: isVisible ? 'block' : 'none' }" 
-     style="position: fixed; top: 60px; width: 355px; background-color: white;" 
+     style="position: fixed; top: 60px; width: 350px; background-color: white;" 
      >
      
     <div v-for="film in searchFilms.films" :key="film.filmId" style="margin-bottom: 10px; border-bottom: 1px solid #ccc; cursor: pointer;" v-on:click="cl(film.filmId)">
     <div style="display: flex">
       <img :src="film.posterUrl" style="width: 32px; height: 48px; padding: 5px"/>
-      <p style="color: black; margin-top: 10px; margin-left: 5px">{{ film.nameRu }}</p>
+      <div>
+      <p style="color: black; margin-top: 10px; margin-left: 5px; font-size: 15px;">{{ film.nameRu }}</p>
+      <div style="display: flex">
+        <p style="color: black; margin-top: -10px; margin-left: 5px; font-size: 13px; line-height: 15px;">{{ film.rating & film.rating !== null ? film.rating: 'нет рейтинга' }}</p>
+        <p style="color: rgba(0,0,0,.6); margin-top: -10px; margin-left: 5px; font-size: 13px; line-height: 15px;">{{ film.nameEn || film.nameRu }}</p>
+        <p style="color: rgba(0,0,0,.6); margin-top: -10px; margin-left: 5px; font-size: 13px; line-height: 15px;">{{ film.year }}</p>
+      </div>
+      </div>
     </div>
+    
   </div>
     </div>
   </div>
