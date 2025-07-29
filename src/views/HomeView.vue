@@ -66,7 +66,7 @@ export default {
     <a href="#"><i class="fas fa-photo-video"></i> Медиа</a>
   </div>
 
-  <div class="film-list">
+  <div class="film-list" >
     <div class="films" style="margin-left: 50px;">
       <div v-for="film in films" :key="film.kinopoiskId" class="film-card" v-on:click="cl(film.kinopoiskId)">
         <img :src="film.posterUrlPreview" :alt="film.nameRu" />
@@ -128,15 +128,15 @@ export default {
   margin-top: 15px;
   flex-flow: column wrap;
   display: flex;
-  margin-left: 320px;
+  margin-left: 300px;
   width: 235px;
 }
 .links::after {
   content: "";
   position: absolute;
   top: 0;
-  right: -1px;
-  width: 1.5px;
+  right: 10px;
+  width: 1px;
   height: 100%;
   background-color: #ccc; 
 }
@@ -154,6 +154,9 @@ export default {
   text-decoration: none;
   margin-top: 10px;
   font-family: var(--font-family, "Graphik Kinopoisk LC Web", Tahoma, Arial, Verdana, sans-serif);
+  margin-left: 15px;
+  padding-left: 8px;
+  
 }
 .links a:hover {
   color: black;
@@ -164,6 +167,7 @@ export default {
   margin-left: 200px;
   margin-right: 320px;
   background-color: white;
+  width: 1080px;
 }
 .films {
   width: 1030px;

@@ -64,7 +64,7 @@ export default {
   </a>
 
   <div style="display: flex; width: 730px;">
-  <div class="nav-item" style="width: 168px; margin-left: 10px; margin-right: 10px;">
+  <div class="nav-item" style="width: 168px; margin-left: -90px; margin-right: 10px;">
     <i class="fas fa-play"></i>
     <span>Онлайн-кинотеатр</span>
   </div>
