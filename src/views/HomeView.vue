@@ -66,25 +66,60 @@ export default {
     <a href="#"><i class="fas fa-photo-video"></i> Медиа</a>
   </div>
 
-  <div class="film-list" >
-    <div class="films" style="margin-left: 50px;">
-      <div v-for="film in films" :key="film.kinopoiskId" class="film-card" v-on:click="cl(film.kinopoiskId)">
-        <img :src="film.posterUrlPreview" :alt="film.nameRu" />
-        <div class="film-info">
-          <strong>{{ film.nameRu }}</strong>
-          <p>id: {{ film.kinopoiskId }}</p>
-          <p>Год: {{ film.year }}</p>
-          <p>Рейтинг: {{ film.ratingKinopoisk && film.ratingKinopoisk !== 'null' ? film.ratingKinopoisk : 'неизвестен' }}</p>
-        </div>
-      </div>
+ <div class="film-list" style="display: flex; justify-content: center;">
+  <div class="films" style="margin: 0; padding: 0;">
+  <div style="width: 940px; height: 400px; margin-top: 92px; margin-left: 65px; display: grid; grid-template-columns: 229px 711px;">
+  <div style="display: flex; background-color: black; align-items: center; justify-content: center;">
+    <div style="width: 486px; height: 360px">
+      <h1>Hello</h1>
     </div>
   </div>
+  <div style="display: grid;">
+    <div style="grid-column: 1; grid-row: 1;">
+      <iframe
+        style="width: 711px; height: 400px; border: none; outline: none; pointer-events: none;"
+        src="https://www.youtube.com/embed/rLLdLRHZd7c?playlist=rLLdLRHZd7c&autoplay=1&loop=1&mute=1&controls=0&modestbranding=1&rel=0"
+        title="YouTube video player"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div style="
+      grid-column: 1;
+      grid-row: 1;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: linear-gradient(90deg, #000 6.25%, #000 6.26%, rgba(0, 0, 0, .99) 14.15%, rgba(0, 0, 0, .961) 20.77%, rgba(0, 0, 0, .915) 26.27%, rgba(0, 0, 0, .856) 30.8%, rgba(0, 0, 0, .785) 34.5%, rgba(0, 0, 0, .705) 37.54%, rgba(0, 0, 0, .619) 40.06%, rgba(0, 0, 0, .529) 42.21%, rgba(0, 0, 0, .437) 44.15%, rgba(0, 0, 0, .347) 46.03%, rgba(0, 0, 0, .261) 47.99%, rgba(0, 0, 0, .18) 50.2%, rgba(0, 0, 0, .108) 52.79%, rgba(0, 0, 0, .047) 55.94%, transparent 59.77%);
+    "></div>
+  </div>
+
+
+
+
+ 
+</div>
+
+
+
+  </div>
+</div>
+
 </div>
 
 </template>
 
 <style>
-
+.textOnAFilm {
+  grid-row: 1; 
+  grid-column: 1; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  width: 484px; 
+  height: 360px;
+  
+}
 .main-container {
   width: 1280px;
   margin: 0 auto;
@@ -125,11 +160,12 @@ export default {
   position: fixed;
   height: 100%;
   background-color: white;
-  margin-top: 15px;
+  top: 72px;
   flex-flow: column wrap;
   display: flex;
   margin-left: 300px;
   width: 235px;
+  
 }
 .links::after {
   content: "";

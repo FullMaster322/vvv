@@ -74,7 +74,7 @@ export default {
     <span>Билеты в кино</span>
   </div>
 
-  <div class="search-bar">
+  <div class="search-bar" style="z-index: 9999;">
     <div class="search-bar-mega">
     <input type="text" placeholder="Фильмы, сериалы, персоны" v-model="search" v-on:input="logSearch">
     <button class="fas fa-sliders-h"></button>
@@ -82,7 +82,7 @@ export default {
    
     </div>
      <div :style="{ display: isVisible ? 'block' : 'none' }" 
-     style="position: fixed; top: 60px; width: 350px; background-color: white;" 
+     style="position: fixed; top: 60px; width: 350px; background-color: white; z-index: 9999;" 
      class="search-dropdown"
      >
      
