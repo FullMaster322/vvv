@@ -77,8 +77,8 @@ export default {
 
 <template>
 <div style="width: 1280px; margin: 0 auto;">
-  <div class="links" style="margin-left: 20px; margin-top: 0px">
-    <a href="/"><i class="fas fa-home" style="margin-top: 20px"></i> Главная</a>
+  <div class="links" style="margin-left: 20px; margin-top: 0px;">
+    <a href="/"><i class="fas fa-home" style="margin-top: 20px;"></i> Главная</a>
     <a href="#"><i class="fas fa-tv"></i> Онлайн-кинотеатр</a>
     <a href="#"><i class="fas fa-film"></i> Фильмы</a>
     <a href="#"><i class="fas fa-video"></i> Сериалы</a>
@@ -88,72 +88,79 @@ export default {
     <a href="#"><i class="fas fa-ticket-alt"></i> Билеты в кино</a>
     <a href="#"><i class="fas fa-photo-video"></i> Медиа</a>
   </div>
+  .
+  <div class="film-list" style="display: flex; justify-content: center;  margin-top: 0; height: 150vh; margin-top: -50vh">
+    <div class="films" style="margin: 0; padding: 0;">
+      <div style="width: 945px; height: 400px; margin-top: 92px; margin-left: 65px; display: grid; grid-template-columns: 229px 711px;">
+        <div style="display: flex; background-color: black; align-items: center; justify-content: center;">
+          <div style="width: 486px; height: 360px; padding-left: 40px; padding-top: 20px; padding-right: 40px; padding-bottom: 20px;">
+            <h1 style="color: white;">Hello</h1>
+          </div>
+        </div>
+        <div style="display: grid;">
+          <div style="grid-column: 1; grid-row: 1;">
+            <iframe
+              style="width: 711px; height: 400px; border: none; outline: none; pointer-events: none;"
+              src="https://www.youtube.com/embed/rLLdLRHZd7c?playlist=rLLdLRHZd7c&autoplay=1&loop=1&mute=1&controls=0&modestbranding=1&rel=0"
+              title="YouTube video player"
+              allow="autoplay; encrypted-media"
+              allowfullscreen>
+            </iframe>
+          </div>
 
- <div class="film-list" style="display: flex; justify-content: center; height: 100vh; margin-top: -200px">
-  <div class="films" style="margin: 0; padding: 0;">
-  <div style="width: 945px; height: 400px; margin-top: 92px; margin-left: 65px; display: grid; grid-template-columns: 229px 711px;">
-  <div style="display: flex; background-color: black; align-items: center; justify-content: center;">
-    <div style="width: 486px; height: 360px; padding-left: 40px; padding-top: 20px; padding-right: 40px; padding-bottom: 20px">
-      <h1 style="color: white">Hello</h1>
+          <div style="
+            grid-column: 1;
+            grid-row: 1;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: linear-gradient(90deg, #000 6.25%, #000 6.26%, rgba(0, 0, 0, .99) 14.15%, rgba(0, 0, 0, .961) 20.77%, rgba(0, 0, 0, .915) 26.27%, rgba(0, 0, 0, .856) 30.8%, rgba(0, 0, 0, .785) 34.5%, rgba(0, 0, 0, .705) 37.54%, rgba(0, 0, 0, .619) 40.06%, rgba(0, 0, 0, .529) 42.21%, rgba(0, 0, 0, .437) 44.15%, rgba(0, 0, 0, .347) 46.03%, rgba(0, 0, 0, .261) 47.99%, rgba(0, 0, 0, .18) 50.2%, rgba(0, 0, 0, .108) 52.79%, rgba(0, 0, 0, .047) 55.94%, transparent 59.77%);
+          "></div>
+        </div>
+
+        <div>
+          <h1 style="width: 500px;">Рекомендации ></h1>
+          <div style="width: 940px; height: 335px; margin-top: 30px; padding-right: 50px; display: flex;">
+            <img
+              v-on:click="nextRight()"
+              class="circle-arrow"
+              src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nNDgnIGhlaWdodD0nNDgnIGZpbGw9JyMwMDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZmlsbC1ydWxlPSdldmVub2RkJyBjbGlwLXJ1bGU9J2V2ZW5vZGQnIGQ9J00yOS41MTkgMjMuOTY4IDEzLjMzOSA4LjQ2NiAxNi42NiA1bDE4IDE3LjI0NiAxLjgyMSAxLjc0NS0xLjgzMiAxLjczMi0xOCAxNy4wMi0zLjI5OC0zLjQ4N0wyOS41MiAyMy45NjhaJy8+PC9zdmc+"
+            />
+            <img
+              v-on:click="nextLeft()"
+              class="circle-arrow-left"
+              src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nNDgnIGhlaWdodD0nNDgnIGZpbGw9JyMwMDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZmlsbC1ydWxlPSdldmVub2RkJyBjbGlwLXJ1bGU9J2V2ZW5vZGQnIGQ9J00yOS41MTkgMjMuOTY4IDEzLjMzOSA4LjQ2NiAxNi42NiA1bDE4IDE3LjI0NiAxLjgyMSAxLjc0NS0xLjgzMiAxLjczMi0xOCAxNy4wMi0zLjI5OC0zLjQ4N0wyOS41MiAyMy45NjhaJy8+PC9zdmc+"
+            />
+
+            <div class="film-scroll" style="display: flex; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none;">
+              <div
+                v-for="film in films"
+                :key="film.kinopoiskId"
+                class="film-card"
+                v-on:click="cl(film.kinopoiskId)"
+              >
+                <div style="position: relative;">
+              <img :src="film.posterUrlPreview" :alt="film.nameRu" style="z-index: 1"/>
+
+      
+              <span
+        style="position: absolute; top: 5px; left: 5px; color: white; background-color: green; padding-left: 5px; padding-right: 5px; font-weight: 600;"
+      >
+        {{ film.ratingImdb }}
+      </span>
+    </div>
+                <span class="film-name">{{ film.nameRu }}</span><br />
+                <span style="font-size: 13px; color: rgba(0, 0, 0, .6);">{{ film.year }},</span>
+                <span style="font-size: 13px; color: rgba(0, 0, 0, .6);">{{ film.genres[0].genre }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div style="display: grid;">
-    <div style="grid-column: 1; grid-row: 1;">
-      <iframe
-        style="width: 711px; height: 400px; border: none; outline: none; pointer-events: none;"
-        src="https://www.youtube.com/embed/rLLdLRHZd7c?playlist=rLLdLRHZd7c&autoplay=1&loop=1&mute=1&controls=0&modestbranding=1&rel=0"
-        title="YouTube video player"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
-    </div>
-    
-    <div style="
-      grid-column: 1;
-      grid-row: 1;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      background: linear-gradient(90deg, #000 6.25%, #000 6.26%, rgba(0, 0, 0, .99) 14.15%, rgba(0, 0, 0, .961) 20.77%, rgba(0, 0, 0, .915) 26.27%, rgba(0, 0, 0, .856) 30.8%, rgba(0, 0, 0, .785) 34.5%, rgba(0, 0, 0, .705) 37.54%, rgba(0, 0, 0, .619) 40.06%, rgba(0, 0, 0, .529) 42.21%, rgba(0, 0, 0, .437) 44.15%, rgba(0, 0, 0, .347) 46.03%, rgba(0, 0, 0, .261) 47.99%, rgba(0, 0, 0, .18) 50.2%, rgba(0, 0, 0, .108) 52.79%, rgba(0, 0, 0, .047) 55.94%, transparent 59.77%);
-    "></div>
-   
-  </div>
-    <div>
-      <h1 style="width: 500px">Рекомендации ></h1>
-      <div style="width: 940px; height: 335px; margin-top: 30px; padding-right: 50px; display: flex;">
-  <img v-on:click="nextRight()" class="circle-arrow" style="margin-left: 918px; margin-top: 85px; cursor: pointer" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nNDgnIGhlaWdodD0nNDgnIGZpbGw9JyMwMDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZmlsbC1ydWxlPSdldmVub2RkJyBjbGlwLXJ1bGU9J2V2ZW5vZGQnIGQ9J00yOS41MTkgMjMuOTY4IDEzLjMzOSA4LjQ2NiAxNi42NiA1bDE4IDE3LjI0NiAxLjgyMSAxLjc0NS0xLjgzMiAxLjczMi0xOCAxNy4wMi0zLjI5OC0zLjQ4N0wyOS41MiAyMy45NjhaJy8+PC9zdmc+"/>
-
-  <img v-on:click="nextLeft()" class="circle-arrow-left" style="transform: rotate(180deg); margin-top: 85px; margin-left: -18px; cursor: pointer" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nNDgnIGhlaWdodD0nNDgnIGZpbGw9JyMwMDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZmlsbC1ydWxlPSdldmVub2RkJyBjbGlwLXJ1bGU9J2V2ZW5vZGQnIGQ9J00yOS41MTkgMjMuOTY4IDEzLjMzOSA4LjQ2NiAxNi42NiA1bDE4IDE3LjI0NiAxLjgyMSAxLjc0NS0xLjgzMiAxLjczMi0xOCAxNy4wMi0zLjI5OC0zLjQ4N0wyOS41MiAyMy45NjhaJy8+PC9zdmc+"/>
-
- <div class="film-scroll" style="display: flex; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none;">
-  
-  <div
-    v-for="film in films"
-    :key="film.kinopoiskId"
-    class="film-card"
-    v-on:click="cl(film.kinopoiskId)"
-  >
-    <span style="margin-top: 5px; margin-left: 5px; color: white; background-color: green; padding-left: 5px; padding-right: 5px; font-weight: 600;">
-      {{ film.ratingImdb }}
-    </span>
-    <img :src="film.posterUrlPreview" :alt="film.nameRu" />
-    <span class="film-name">{{ film.nameRu }}</span><br>
-    <span style="font-size: 13px; color: rgba(0, 0, 0, .6);">{{ film.year }},</span>
-    <span style="font-size: 13px; color: rgba(0, 0, 0, .6);">{{ film.genres[0].genre }}</span>
-  </div>
 </div>
 
-</div>
-
-    </div>
-</div>
-
-
-
-  </div>
-</div>
-
-</div>
 
 </template>
 
@@ -161,8 +168,7 @@ export default {
 .film-scroll::-webkit-scrollbar {
       display: none;
     }
-.circle-arrow
-{
+.circle-arrow {
   width: 22px;
   height: 22px;
   background-color: white;
@@ -170,8 +176,22 @@ export default {
   border-radius: 50%;
   padding: 11px;
   position: absolute;
- 
+  margin-top: 85px; 
+  margin-left: 918px; 
+  cursor: pointer; 
+  z-index: 9999; 
+  background-repeat: no-repeat;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .05), 
+              0 1px 0 1px rgba(0, 0, 0, .05), 
+              0 0 0 1px rgba(0, 0, 0, .05);
+  transition: margin-left 0.3s ease-in-out;
+  
 }
+.circle-arrow:hover {
+  margin-left: 919px; 
+}
+
+
 .circle-arrow-left
 {
   width: 22px;
@@ -181,8 +201,21 @@ export default {
   border-radius: 50%;
   padding: 11px;
   position: absolute;
- 
+  margin-top: 85px; 
+  margin-left: -18px; 
+  cursor: pointer; 
+  z-index: 9999; 
+  background-repeat: no-repeat;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .05), 
+              0 1px 0 1px rgba(0, 0, 0, .05), 
+              0 0 0 1px rgba(0, 0, 0, .05);
+  transition: margin-left 0.3s ease-in-out;
+  transform: rotate(180deg);  
 }
+.circle-arrow-left:hover {
+  margin-left: -19px; 
+}
+
 
 .textOnAFilm {
   grid-row: 1; 
@@ -285,9 +318,18 @@ export default {
   margin-top: 72px;
 }
 .film-card {
-  
+  cursor: pointer;
   display: inline-block;
   margin-left: 7px;
+}
+.film-card:hover .film-name {
+  color: green;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+.film-card:hover img {
+  filter: brightness(0.5);
+  transition: filter 0.3s ease-in-out;
 }
 
 .film-card img {
