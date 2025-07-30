@@ -17,7 +17,29 @@ export default {
     cl(filmId) {
       console.log(filmId);
       this.$router.push({ name: 'about', params: { id: filmId } });
-      
+    },
+     nextRight() {
+      const container = this.$el.querySelector(".film-scroll");
+      const arrow = this.$el.querySelector(".circle-arrow");
+
+      arrow.style.display = 'none'; 
+      container.scrollBy({ left: 943.2, behavior: "smooth" });
+
+      setTimeout(() => {
+        arrow.style.display = 'block';
+      }, 500);
+
+    },
+    nextLeft() {
+       const container = this.$el.querySelector(".film-scroll");
+       const arrowLeft = this.$el.querySelector(".circle-arrow-left");
+
+      arrowLeft.style.display = 'none'; 
+      container.scrollBy({ left: -943.2, behavior: "smooth" });
+
+      setTimeout(() => {
+        arrowLeft.style.display = 'block';
+      }, 500);
     },
     async loadNextPage() {
       if (this.page > this.maxPages) {
@@ -38,9 +60,10 @@ export default {
         );
         const data = await response.json();
         this.films.push(...data.items);
+        this.films = this.films.slice(0, 18);
         this.page++;
         console.log(data);
-        setTimeout(this.loadNextPage, 1000);
+        
       } catch (error) {
         console.error(`error:`, error);
         this.loading = false;
@@ -66,12 +89,12 @@ export default {
     <a href="#"><i class="fas fa-photo-video"></i> Медиа</a>
   </div>
 
- <div class="film-list" style="display: flex; justify-content: center;">
+ <div class="film-list" style="display: flex; justify-content: center; height: 100vh; margin-top: -200px">
   <div class="films" style="margin: 0; padding: 0;">
-  <div style="width: 940px; height: 400px; margin-top: 92px; margin-left: 65px; display: grid; grid-template-columns: 229px 711px;">
+  <div style="width: 945px; height: 400px; margin-top: 92px; margin-left: 65px; display: grid; grid-template-columns: 229px 711px;">
   <div style="display: flex; background-color: black; align-items: center; justify-content: center;">
-    <div style="width: 486px; height: 360px">
-      <h1>Hello</h1>
+    <div style="width: 486px; height: 360px; padding-left: 40px; padding-top: 20px; padding-right: 40px; padding-bottom: 20px">
+      <h1 style="color: white">Hello</h1>
     </div>
   </div>
   <div style="display: grid;">
@@ -84,6 +107,7 @@ export default {
         allowfullscreen>
       </iframe>
     </div>
+    
     <div style="
       grid-column: 1;
       grid-row: 1;
@@ -92,12 +116,36 @@ export default {
       pointer-events: none;
       background: linear-gradient(90deg, #000 6.25%, #000 6.26%, rgba(0, 0, 0, .99) 14.15%, rgba(0, 0, 0, .961) 20.77%, rgba(0, 0, 0, .915) 26.27%, rgba(0, 0, 0, .856) 30.8%, rgba(0, 0, 0, .785) 34.5%, rgba(0, 0, 0, .705) 37.54%, rgba(0, 0, 0, .619) 40.06%, rgba(0, 0, 0, .529) 42.21%, rgba(0, 0, 0, .437) 44.15%, rgba(0, 0, 0, .347) 46.03%, rgba(0, 0, 0, .261) 47.99%, rgba(0, 0, 0, .18) 50.2%, rgba(0, 0, 0, .108) 52.79%, rgba(0, 0, 0, .047) 55.94%, transparent 59.77%);
     "></div>
+   
   </div>
+    <div>
+      <h1 style="width: 500px">Рекомендации ></h1>
+      <div style="width: 940px; height: 335px; margin-top: 30px; padding-right: 50px; display: flex;">
+  <img v-on:click="nextRight()" class="circle-arrow" style="margin-left: 918px; margin-top: 85px; cursor: pointer" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nNDgnIGhlaWdodD0nNDgnIGZpbGw9JyMwMDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZmlsbC1ydWxlPSdldmVub2RkJyBjbGlwLXJ1bGU9J2V2ZW5vZGQnIGQ9J00yOS41MTkgMjMuOTY4IDEzLjMzOSA4LjQ2NiAxNi42NiA1bDE4IDE3LjI0NiAxLjgyMSAxLjc0NS0xLjgzMiAxLjczMi0xOCAxNy4wMi0zLjI5OC0zLjQ4N0wyOS41MiAyMy45NjhaJy8+PC9zdmc+"/>
 
+  <img v-on:click="nextLeft()" class="circle-arrow-left" style="transform: rotate(180deg); margin-top: 85px; margin-left: -18px; cursor: pointer" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nNDgnIGhlaWdodD0nNDgnIGZpbGw9JyMwMDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZmlsbC1ydWxlPSdldmVub2RkJyBjbGlwLXJ1bGU9J2V2ZW5vZGQnIGQ9J00yOS41MTkgMjMuOTY4IDEzLjMzOSA4LjQ2NiAxNi42NiA1bDE4IDE3LjI0NiAxLjgyMSAxLjc0NS0xLjgzMiAxLjczMi0xOCAxNy4wMi0zLjI5OC0zLjQ4N0wyOS41MiAyMy45NjhaJy8+PC9zdmc+"/>
 
+ <div class="film-scroll" style="display: flex; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none;">
+  
+  <div
+    v-for="film in films"
+    :key="film.kinopoiskId"
+    class="film-card"
+    v-on:click="cl(film.kinopoiskId)"
+  >
+    <span style="margin-top: 5px; margin-left: 5px; color: white; background-color: green; padding-left: 5px; padding-right: 5px; font-weight: 600;">
+      {{ film.ratingImdb }}
+    </span>
+    <img :src="film.posterUrlPreview" :alt="film.nameRu" />
+    <span class="film-name">{{ film.nameRu }}</span><br>
+    <span style="font-size: 13px; color: rgba(0, 0, 0, .6);">{{ film.year }},</span>
+    <span style="font-size: 13px; color: rgba(0, 0, 0, .6);">{{ film.genres[0].genre }}</span>
+  </div>
+</div>
 
+</div>
 
- 
+    </div>
 </div>
 
 
@@ -110,6 +158,32 @@ export default {
 </template>
 
 <style>
+.film-scroll::-webkit-scrollbar {
+      display: none;
+    }
+.circle-arrow
+{
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 11px;
+  position: absolute;
+ 
+}
+.circle-arrow-left
+{
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 11px;
+  position: absolute;
+ 
+}
+
 .textOnAFilm {
   grid-row: 1; 
   grid-column: 1; 
@@ -211,27 +285,25 @@ export default {
   margin-top: 72px;
 }
 .film-card {
-  width: 300px;
-  height: 550px;
-  display: inline-block;
-  margin: 18px;
-  background-color: #ffffff;
-  text-align: center;
-  transition: 0.2s;
-  cursor: pointer;
-  background-color: grey;
-  border-radius: 20px;
-  color: white;
-}
-.film-card:hover {
-  background: #eb469f;
-  color: white;
   
+  display: inline-block;
+  margin-left: 7px;
 }
+
 .film-card img {
-  margin: 20px;
-  width: 260px;
-  height: 360px;
+  width: 150px;
+  height: 225px;
+}
+.film-name {
+  color: #000;
+  font-size: 15px; 
+  font-weight: 800;
+  line-height: 18px; 
+  cursor: pointer;
+  transition: 0.1s;
+}
+.film-name:hover {
+  color: #f50;
 }
 .film-info {
   padding: 8px;
