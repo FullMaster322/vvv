@@ -394,6 +394,7 @@ methods: {
 body {
   background-color: #F4F4F4;
   -webkit-font-smoothing: antialiased;
+  font-family: Graphik Kinopoisk LC Web, Tahoma, Arial, Verdana, sans-serif;
 }
 .outer {
   width: 100%;

@@ -115,5 +115,7 @@ methods: {
 </template>
 
 <style>
-
+body {
+  font-family: Graphik Kinopoisk LC Web, Tahoma, Arial, Verdana, sans-serif;
+}
 </style>

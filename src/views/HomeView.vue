@@ -155,7 +155,7 @@ export default {
           <div style="grid-column: 1; grid-row: 1;">
             <iframe
               style="width: 711px; height: 400px; border: none; outline: none; pointer-events: none;"
-              src="https://www.youtube.com/embed/rLLdLRHZd7c?playlist=rLLdLRHZd7c&autoplay=1&loop=1&mute=1&controls=0&modestbranding=1&rel=0"
+              src="https://www.youtube.com/embed/71NWP1I7W4Y?playlist=71NWP1I7W4Y&autoplay=1&loop=1&mute=1&controls=0&modestbranding=1&rel=0"
               title="YouTube video player"
               allow="autoplay; encrypted-media"
               allowfullscreen>
@@ -200,6 +200,19 @@ export default {
             </div>
           </div>
         <div>
+          
+            <div class="freeDays">
+              <div style="width: 868px; height: 470px; align-items: center; text-align: center; justify-content: center; margin-left: 83.5px; padding-top: 50px">
+                <img src="../assets/yandexPlus.png" style="width: 190px; height: 28px; cursor: pointer"/>
+                <div class="bigTxt" style="padding-top: 20px;">Фильмы и сериалы,<br> премиум‑телеканалы по подписке</div>
+                <div class="bigTxt" style="color: #868eff;">90 дней бесплатно</div>
+                <div style="width: 868px; height: 146px; align-items: left; text-align: left; justify-content: left;">
+                  <div class="bigTxt" style="font-size: 18px; font-weight: 600; line-height: 22px; ">90 дней бесплатно</div>
+                </div>
+              </div>
+            </div>
+          
+
           <div style="display: flex; width: 600px; cursor: pointer; margin-top: 20px;">
             <a style="font-size: 22px; line-height: 28px; text-decoration: none; color: inherit;">Рекомендации</a>
             <img style="width: 20px; height: 20px; margin-top: 5px; font-weight: var(--font-weight-semibold, 600); margin-left: 3px" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nNDgnIGhlaWdodD0nNDgnIGZpbGw9JyMwMDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZmlsbC1ydWxlPSdldmVub2RkJyBjbGlwLXJ1bGU9J2V2ZW5vZGQnIGQ9J00yOS41MTkgMjMuOTY4IDEzLjMzOSA4LjQ2NiAxNi42NiA1bDE4IDE3LjI0NiAxLjgyMSAxLjc0NS0xLjgzMiAxLjczMi0xOCAxNy4wMi0zLjI5OC0zLjQ4N0wyOS41MiAyMy45NjhaJy8+PC9zdmc+"/>
@@ -247,6 +260,29 @@ export default {
 </template>
 
 <style>
+body {
+  font-family: Graphik Kinopoisk LC Web, Tahoma, Arial, Verdana, sans-serif;
+}
+.bigTxt {
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 50px;
+    color: #fff;
+    height: 100px;
+    unicode-bidi: isolate;
+    
+}
+.freeDays {
+  position: relative;
+  width: 1035px;
+  height: 614px;
+  background-image: url("https://avatars.mds.yandex.net/get-ott/1531675/83d830fa-7239-4585-ae1d-03d0c01d3b1d/960x540");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin-left: -45px;
+  
+}
 .raitingF {
   position: absolute; 
   top: 5px; 
