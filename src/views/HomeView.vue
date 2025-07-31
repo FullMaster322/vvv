@@ -4,6 +4,7 @@ export default {
   data() {
     return {
       films: [],
+      news: [],
       loading: true,
       page: 1,
       maxPages: 5,
@@ -12,65 +13,118 @@ export default {
   },
   mounted() {
     this.loadNextPage();
+    this.News();
   },
-  methods: {
-    cl(filmId) {
-      console.log(filmId);
-      this.$router.push({ name: 'about', params: { id: filmId } });
-    },
-     nextRight() {
-      const container = this.$el.querySelector(".film-scroll");
-      const arrow = this.$el.querySelector(".circle-arrow");
+ methods: {
+  cl(filmId) {
+    console.log(filmId);
+    this.$router.push({ name: 'about', params: { id: filmId } });
+  },
+  // Slider for "Рекомендации"
+  nextRightN() {
+    const container = this.$el.querySelector(".film-scroll");
+    const arrow = this.$el.querySelector(".circle-arrow");
 
-      arrow.style.display = 'none'; 
-      container.scrollBy({ left: 943.2, behavior: "smooth" });
+    if (!container) return;
 
-      setTimeout(() => {
-        arrow.style.display = 'block';
-      }, 500);
+    arrow.style.display = 'none';
+    container.scrollBy({ left: 943.2, behavior: "smooth" });
 
-    },
-    nextLeft() {
-       const container = this.$el.querySelector(".film-scroll");
-       const arrowLeft = this.$el.querySelector(".circle-arrow-left");
+    setTimeout(() => {
+      arrow.style.display = 'block';
+    }, 500);
+  },
+  nextLeftN() {
+    const container = this.$el.querySelector(".film-scroll");
+    const arrowLeft = this.$el.querySelector(".circle-arrow-left");
 
-      arrowLeft.style.display = 'none'; 
-      container.scrollBy({ left: -943.2, behavior: "smooth" });
+    if (!container) return;
 
-      setTimeout(() => {
-        arrowLeft.style.display = 'block';
-      }, 500);
-    },
-    async loadNextPage() {
-      if (this.page > this.maxPages) {
-        this.loading = false;
-        return;
-      }
+    arrowLeft.style.display = 'none';
+    container.scrollBy({ left: -943.2, behavior: "smooth" });
 
-      try {
-        const response = await fetch(
-          `https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_250_MOVIES&page=${this.page}`,
-          {
-            method: 'GET',
-            headers: {
-              'X-API-KEY': this.apiKey,
-              'Content-Type': 'application/json'
-            }
-          }
-        );
-        const data = await response.json();
-        this.films.push(...data.items);
-        this.films = this.films.slice(0, 18);
-        this.page++;
-        console.log(data);
-        
-      } catch (error) {
-        console.error(`error:`, error);
-        this.loading = false;
-      }
+    setTimeout(() => {
+      arrowLeft.style.display = 'block';
+    }, 500);
+  },
+  // Slider for "В фокусе"
+  nextRightF() {
+    const container = this.$el.querySelector(".film-scroll-news");
+    const arrow = this.$el.querySelector(".circle-arrow-news");
+
+    if (!container) return;
+
+    arrow.style.display = 'none';
+    container.scrollBy({ left: 945, behavior: "smooth" });
+
+    setTimeout(() => {
+      arrow.style.display = 'block';
+    }, 500);
+  },
+  nextLeftF() {
+    const container = this.$el.querySelector(".film-scroll-news");
+    const arrowLeft = this.$el.querySelector(".circle-arrow-left-news");
+
+    if (!container) return;
+
+    arrowLeft.style.display = 'none';
+    container.scrollBy({ left: -945, behavior: "smooth" });
+
+    setTimeout(() => {
+      arrowLeft.style.display = 'block';
+    }, 500);
+  },
+  async loadNextPage() {
+    if (this.page > this.maxPages) {
+      this.loading = false;
+      return;
     }
+
+    try {
+      const response = await fetch(
+        `https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_250_MOVIES&page=${this.page}`,
+        {
+          method: 'GET',
+          headers: {
+            'X-API-KEY': this.apiKey,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      const data = await response.json();
+      this.films.push(...data.items);
+      this.films = this.films.slice(0, 18);
+      this.page++;
+    } catch (error) {
+      console.error(`error:`, error);
+      this.loading = false;
+    }
+  },
+  async News() {
     
+    try {
+      const response = await fetch(
+        `https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_250_TV_SHOWS&page=1`,
+        {
+          method: 'GET',
+          headers: {
+            'X-API-KEY': this.apiKey,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      const data = await response.json();
+      this.news = data.items || []; 
+      console.log(this.news);
+      
+      
+    } catch (error) {
+      console.error(`error:`, error);
+      this.loading = false;
+    }
   }
+}
+
   
 };
 </script>
@@ -88,8 +142,8 @@ export default {
     <a href="#"><i class="fas fa-ticket-alt"></i> Билеты в кино</a>
     <a href="#"><i class="fas fa-photo-video"></i> Медиа</a>
   </div>
-  .
-  <div class="film-list" style="display: flex; justify-content: center;  margin-top: 0; height: 150vh; margin-top: -50vh">
+  
+  <div class="film-list" style="display: flex; justify-content: center;  margin-top: 0; height: 400vh; margin-top: -173vh">
     <div class="films" style="margin: 0; padding: 0;">
       <div style="width: 945px; height: 400px; margin-top: 92px; margin-left: 65px; display: grid; grid-template-columns: 229px 711px;">
         <div style="display: flex; background-color: black; align-items: center; justify-content: center;">
@@ -119,15 +173,45 @@ export default {
         </div>
 
         <div>
-          <h1 style="width: 500px;">Рекомендации ></h1>
-          <div style="width: 940px; height: 335px; margin-top: 30px; padding-right: 50px; display: flex;">
+          <div style="display: flex; width: 600px; cursor: pointer; margin-top: 20px;">
+            <a style="font-size: 22px; line-height: 28px; text-decoration: none; color: inherit; font-weight: bold;">В фокусе</a>
+          </div>
+          <div style="width: 940px; height: 335px; margin-top: 15px; padding-right: 50px; display: flex;">
             <img
-              v-on:click="nextRight()"
+              v-on:click="nextRightF()"
+              class="circle-arrow-news"
+              src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nNDgnIGhlaWdodD0nNDgnIGZpbGw9JyMwMDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZmlsbC1ydWxlPSdldmVub2RkJyBjbGlwLXJ1bGU9J2V2ZW5vZGQnIGQ9J00yOS41MTkgMjMuOTY4IDEzLjMzOSA4LjQ2NiAxNi42NiA1bDE4IDE3LjI0NiAxLjgyMSAxLjc0NS0xLjgzMiAxLjczMi0xOCAxNy4wMi0zLjI5OC0zLjQ4N0wyOS41MiAyMy45NjhaJy8+PC9zdmc+"
+            />
+            <img
+              v-on:click="nextLeftF()"
+              class="circle-arrow-left-news"
+              src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nNDgnIGhlaWdodD0nNDgnIGZpbGw9JyMwMDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZmlsbC1ydWxlPSdldmVub2RkJyBjbGlwLXJ1bGU9J2V2ZW5vZGQnIGQ9J00yOS41MTkgMjMuOTY4IDEzLjMzOSA4LjQ2NiAxNi42NiA1bDE4IDE3LjI0NiAxLjgyMSAxLjc0NS0xLjgzMiAxLjczMi0xOCAxNy4wMi0zLjI5OC0zLjQ4N0wyOS41MiAyMy45NjhaJy8+PC9zdmc+"
+            />
+
+            <div class="film-scroll-news" style="display: flex; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none;">
+              <div
+                v-for="newsW in news" :key="newsW.kinopoiskId" class="news-card" v-on:click="cl(newsW.kinopoiskId)">
+                <div style="position: relative;">
+              <img :src="newsW.posterUrl" style="z-index: 1"/>
+
+              </div>
+                
+              </div>
+            </div>
+          </div>
+        <div>
+          <div style="display: flex; width: 600px; cursor: pointer; margin-top: 20px;">
+            <a style="font-size: 22px; line-height: 28px; text-decoration: none; color: inherit;">Рекомендации</a>
+            <img style="width: 20px; height: 20px; margin-top: 5px; font-weight: var(--font-weight-semibold, 600); margin-left: 3px" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nNDgnIGhlaWdodD0nNDgnIGZpbGw9JyMwMDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZmlsbC1ydWxlPSdldmVub2RkJyBjbGlwLXJ1bGU9J2V2ZW5vZGQnIGQ9J00yOS41MTkgMjMuOTY4IDEzLjMzOSA4LjQ2NiAxNi42NiA1bDE4IDE3LjI0NiAxLjgyMSAxLjc0NS0xLjgzMiAxLjczMi0xOCAxNy4wMi0zLjI5OC0zLjQ4N0wyOS41MiAyMy45NjhaJy8+PC9zdmc+"/>
+          </div>
+          <div style="width: 940px; height: 335px; margin-top: 15px; padding-right: 50px; display: flex;">
+            <img
+              v-on:click="nextRightN()"
               class="circle-arrow"
               src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nNDgnIGhlaWdodD0nNDgnIGZpbGw9JyMwMDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZmlsbC1ydWxlPSdldmVub2RkJyBjbGlwLXJ1bGU9J2V2ZW5vZGQnIGQ9J00yOS41MTkgMjMuOTY4IDEzLjMzOSA4LjQ2NiAxNi42NiA1bDE4IDE3LjI0NiAxLjgyMSAxLjc0NS0xLjgzMiAxLjczMi0xOCAxNy4wMi0zLjI5OC0zLjQ4N0wyOS41MiAyMy45NjhaJy8+PC9zdmc+"
             />
             <img
-              v-on:click="nextLeft()"
+              v-on:click="nextLeftN()"
               class="circle-arrow-left"
               src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nNDgnIGhlaWdodD0nNDgnIGZpbGw9JyMwMDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZmlsbC1ydWxlPSdldmVub2RkJyBjbGlwLXJ1bGU9J2V2ZW5vZGQnIGQ9J00yOS41MTkgMjMuOTY4IDEzLjMzOSA4LjQ2NiAxNi42NiA1bDE4IDE3LjI0NiAxLjgyMSAxLjc0NS0xLjgzMiAxLjczMi0xOCAxNy4wMi0zLjI5OC0zLjQ4N0wyOS41MiAyMy45NjhaJy8+PC9zdmc+"
             />
@@ -143,12 +227,8 @@ export default {
               <img :src="film.posterUrlPreview" :alt="film.nameRu" style="z-index: 1"/>
 
       
-              <span
-        style="position: absolute; top: 5px; left: 5px; color: white; background-color: green; padding-left: 5px; padding-right: 5px; font-weight: 600;"
-      >
-        {{ film.ratingImdb }}
-      </span>
-    </div>
+              <span class="raitingF">{{ film.ratingImdb }} </span>
+              </div>
                 <span class="film-name">{{ film.nameRu }}</span><br />
                 <span style="font-size: 13px; color: rgba(0, 0, 0, .6);">{{ film.year }},</span>
                 <span style="font-size: 13px; color: rgba(0, 0, 0, .6);">{{ film.genres[0].genre }}</span>
@@ -156,18 +236,34 @@ export default {
             </div>
           </div>
         </div>
+        </div>
       </div>
     </div>
   </div>
+  
 </div>
 
 
 </template>
 
 <style>
+.raitingF {
+  position: absolute; 
+  top: 5px; 
+  left: 5px; 
+  color: white; 
+  background-color: green; 
+  padding-left: 5px; 
+  padding-right: 5px; 
+  font-weight: 600;
+  font-size: 13px;
+}
 .film-scroll::-webkit-scrollbar {
       display: none;
     }
+.film-scroll-news::-webkit-scrollbar {
+      display: none;
+}
 .circle-arrow {
   width: 22px;
   height: 22px;
@@ -179,7 +275,7 @@ export default {
   margin-top: 85px; 
   margin-left: 918px; 
   cursor: pointer; 
-  z-index: 9999; 
+  z-index: 2; 
   background-repeat: no-repeat;
   box-shadow: 0 4px 6px rgba(0, 0, 0, .05), 
               0 1px 0 1px rgba(0, 0, 0, .05), 
@@ -188,6 +284,54 @@ export default {
   
 }
 .circle-arrow:hover {
+  margin-left: 919px; 
+}
+
+
+.circle-arrow-news-left
+{
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 11px;
+  position: absolute;
+  margin-top: 85px; 
+  margin-left: -18px; 
+  cursor: pointer; 
+  z-index: 2; 
+  background-repeat: no-repeat;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .05), 
+              0 1px 0 1px rgba(0, 0, 0, .05), 
+              0 0 0 1px rgba(0, 0, 0, .05);
+  transition: margin-left 0.3s ease-in-out;
+  transform: rotate(180deg);  
+}
+.circle-arrow-news-left:hover {
+  margin-left: -19px; 
+}
+
+.circle-arrow-news {
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 11px;
+  position: absolute;
+  margin-top: 85px; 
+  margin-left: 918px; 
+  cursor: pointer; 
+  z-index: 2; 
+  background-repeat: no-repeat;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .05), 
+              0 1px 0 1px rgba(0, 0, 0, .05), 
+              0 0 0 1px rgba(0, 0, 0, .05);
+  transition: margin-left 0.3s ease-in-out;
+  
+}
+.circle-arrow-news:hover {
   margin-left: 919px; 
 }
 
@@ -204,7 +348,7 @@ export default {
   margin-top: 85px; 
   margin-left: -18px; 
   cursor: pointer; 
-  z-index: 9999; 
+  z-index: 2; 
   background-repeat: no-repeat;
   box-shadow: 0 4px 6px rgba(0, 0, 0, .05), 
               0 1px 0 1px rgba(0, 0, 0, .05), 
@@ -213,6 +357,30 @@ export default {
   transform: rotate(180deg);  
 }
 .circle-arrow-left:hover {
+  margin-left: -19px; 
+}
+
+.circle-arrow-left-news
+{
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 11px;
+  position: absolute;
+  margin-top: 85px; 
+  margin-left: -18px; 
+  cursor: pointer; 
+  z-index: 2; 
+  background-repeat: no-repeat;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .05), 
+              0 1px 0 1px rgba(0, 0, 0, .05), 
+              0 0 0 1px rgba(0, 0, 0, .05);
+  transition: margin-left 0.3s ease-in-out;
+  transform: rotate(180deg);  
+}
+.circle-arrow-left-news:hover {
   margin-left: -19px; 
 }
 
@@ -323,7 +491,7 @@ export default {
   margin-left: 7px;
 }
 .film-card:hover .film-name {
-  color: green;
+  color: #f50;
   font-weight: bold;
   transition: all 0.3s ease-in-out;
 }
@@ -331,7 +499,18 @@ export default {
   filter: brightness(0.5);
   transition: filter 0.3s ease-in-out;
 }
-
+.film-card:hover .raitingF {
+  display: none;
+}
+.news-card {
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 7px;
+}
+.news-card img {
+  width: 229px;
+  height: 294px;
+}
 .film-card img {
   width: 150px;
   height: 225px;

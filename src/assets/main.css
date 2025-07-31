@@ -93,6 +93,7 @@ color: rgb(175, 175, 175);
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 9999;
 }
 
 .wdt {
