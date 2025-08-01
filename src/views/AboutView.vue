@@ -51,7 +51,7 @@ methods: {
   },
   async getFilmById() {
     try {
-      const response = await fetch(
+      const responseFilm = await fetch(
         `https://kinopoiskapiunofficial.tech/api/v2.2/films/${this.kinopoiskId}`,
         {
           method: 'GET',
@@ -62,9 +62,9 @@ methods: {
         }
       );
 
-      const data = await response.json();
+      const dataFilm = await responseFilm.json();
       
-      this.object = data;
+      this.object = dataFilm;
       
     } catch (error) {
       console.error(error);

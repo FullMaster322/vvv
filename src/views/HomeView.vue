@@ -5,6 +5,7 @@ export default {
     return {
       films: [],
       news: [],
+      series: [],
       loading: true,
       page: 1,
       maxPages: 5,
@@ -14,13 +15,14 @@ export default {
   mounted() {
     this.loadNextPage();
     this.News();
+    this.Series();
   },
  methods: {
   cl(filmId) {
     console.log(filmId);
     this.$router.push({ name: 'about', params: { id: filmId } });
   },
-  // Slider for "Рекомендации"
+  
   nextRightN() {
     const container = this.$el.querySelector(".film-scroll");
     const arrow = this.$el.querySelector(".circle-arrow");
@@ -47,7 +49,7 @@ export default {
       arrowLeft.style.display = 'block';
     }, 500);
   },
-  // Slider for "В фокусе"
+ 
   nextRightF() {
     const container = this.$el.querySelector(".film-scroll-news");
     const arrow = this.$el.querySelector(".circle-arrow-news");
@@ -74,6 +76,34 @@ export default {
       arrowLeft.style.display = 'block';
     }, 500);
   },
+
+  nextRightS() {
+    const container = this.$el.querySelector(".film-scroll-series");
+    const arrow = this.$el.querySelector(".circle-arrow-series");
+
+    if (!container) return;
+
+    arrow.style.display = 'none';
+    container.scrollBy({ left: 945, behavior: "smooth" });
+
+    setTimeout(() => {
+      arrow.style.display = 'block';
+    }, 500);
+  },
+  nextLeftS() {
+    const container = this.$el.querySelector(".film-scroll-series");
+    const arrowLeft = this.$el.querySelector(".circle-arrow-left-series");
+
+    if (!container) return;
+
+    arrowLeft.style.display = 'none';
+    container.scrollBy({ left: -945, behavior: "smooth" });
+
+    setTimeout(() => {
+      arrowLeft.style.display = 'block';
+    }, 500);
+  },
+
   async loadNextPage() {
     if (this.page > this.maxPages) {
       this.loading = false;
@@ -103,7 +133,7 @@ export default {
   async News() {
     
     try {
-      const response = await fetch(
+      const responseN = await fetch(
         `https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_250_TV_SHOWS&page=1`,
         {
           method: 'GET',
@@ -113,9 +143,33 @@ export default {
           }
         }
       );
-      const data = await response.json();
-      this.news = data.items || []; 
+      const dataN = await responseN.json();
+      this.news = dataN.items || []; 
       console.log(this.news);
+      
+      
+    } catch (error) {
+      console.error(`error:`, error);
+      this.loading = false;
+    }
+  },
+
+  async Series() {
+    
+    try {
+      const responseS = await fetch(
+        `https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=POPULAR_SERIES&page=1`,
+        {
+          method: 'GET',
+          headers: {
+            'X-API-KEY': this.apiKey,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      const dataS = await responseS.json();
+      this.series = dataS.items || []; 
+      console.log(this.series);
       
       
     } catch (error) {
@@ -183,6 +237,7 @@ export default {
               src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nNDgnIGhlaWdodD0nNDgnIGZpbGw9JyMwMDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZmlsbC1ydWxlPSdldmVub2RkJyBjbGlwLXJ1bGU9J2V2ZW5vZGQnIGQ9J00yOS41MTkgMjMuOTY4IDEzLjMzOSA4LjQ2NiAxNi42NiA1bDE4IDE3LjI0NiAxLjgyMSAxLjc0NS0xLjgzMiAxLjczMi0xOCAxNy4wMi0zLjI5OC0zLjQ4N0wyOS41MiAyMy45NjhaJy8+PC9zdmc+"
             />
             <img
+              style="margin-top: 110px; "
               v-on:click="nextLeftF()"
               class="circle-arrow-left-news"
               src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nNDgnIGhlaWdodD0nNDgnIGZpbGw9JyMwMDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZmlsbC1ydWxlPSdldmVub2RkJyBjbGlwLXJ1bGU9J2V2ZW5vZGQnIGQ9J00yOS41MTkgMjMuOTY4IDEzLjMzOSA4LjQ2NiAxNi42NiA1bDE4IDE3LjI0NiAxLjgyMSAxLjc0NS0xLjgzMiAxLjczMi0xOCAxNy4wMi0zLjI5OC0zLjQ4N0wyOS41MiAyMy45NjhaJy8+PC9zdmc+"
@@ -206,11 +261,57 @@ export default {
                 <img src="../assets/yandexPlus.png" style="width: 190px; height: 28px; cursor: pointer"/>
                 <div class="bigTxt" style="padding-top: 20px;">Фильмы и сериалы,<br> премиум‑телеканалы по подписке</div>
                 <div class="bigTxt" style="color: #868eff;">90 дней бесплатно</div>
-                <div style="width: 868px; height: 146px; align-items: left; text-align: left; justify-content: left;">
-                  <div class="bigTxt" style="font-size: 18px; font-weight: 600; line-height: 22px; ">90 дней бесплатно</div>
+                <div style="width: 100%; height: 146px; align-items: left; text-align: left; justify-content: left;">
+                  <div class="bigTxt" style="margin-top: -20px; font-size: 18px; font-weight: 600; line-height: 22px; height: 22px">90 дней бесплатно</div>
+                  <div style="width: 100%; height: 12px; display: flex;">
+                    <div style="width: 60%; background-color: white"></div>
+                    <div style="position: absolute; width: 2px; height: 40px; background-color: #868eff; left: 50%; z-index: 3"></div>
+                    <div style="width: 40%; margin-left: 2px; background-image: linear-gradient(270deg, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, .2) 16.62%);"></div>
+                  </div>
+                  <div style="align-items: center; text-align: center; justify-content: center; margin-top: 30px; width: 100%; font-size: 16px; line-height: 20px; color: hsla(0, 0%, 100%, .7);">Напишем на почту за 3 дня</div>
+                </div>
+                <div style="margin-left: 5px">
+                  <button class="watch-free" style="width: 235px; height: 52px; margin-top: -15px">
+                    <div style=" text-align: center; margin-left: 10px;  color: white; font-size: 15px; padding-right: 10px">
+                      Попробовать бесплатно 
+                    </div>
+                  </button>
+                </div>
+                  <div style="margin-top: 10px; font-size: 13px; line-height: 16px; text-align: center; color: hsla(0, 0%, 100%, .6);">Подписка Яндекс Плюс<br>90 дней бесплатно, далее 11.99 BYN в месяц</div>
+              </div>
+            </div>
+
+
+            <div class="info">
+              <div style="display: flex; width: 600px; cursor: pointer; margin-top: 40px;">
+                <a style="font-size: 22px; line-height: 28px; text-decoration: none; color: inherit; font-weight: bold;">Смотрят сейчас</a>
+                <img style="width: 20px; height: 20px; margin-top: 5px; font-weight: var(--font-weight-semibold, 600); margin-left: 3px" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nNDgnIGhlaWdodD0nNDgnIGZpbGw9JyNmZmYnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZmlsbC1ydWxlPSdldmVub2RkJyBjbGlwLXJ1bGU9J2V2ZW5vZGQnIGQ9J00yOS41MTkgMjMuOTY4IDEzLjMzOSA4LjQ2NiAxNi42NiA1bDE4IDE3LjI0NiAxLjgyMSAxLjc0NS0xLjgzMiAxLjczMi0xOCAxNy4wMi0zLjI5OC0zLjQ4N0wyOS41MiAyMy45NjhaJy8+PC9zdmc+"/>
+              </div>
+              <div style="width: 940px; height: 350px; margin-top: 15px; padding-right: 50px; display: flex;">
+                <img
+                  v-on:click="nextRightS()"
+                  class="circle-arrow-series"
+                  src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nNDgnIGhlaWdodD0nNDgnIGZpbGw9JyMwMDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZmlsbC1ydWxlPSdldmVub2RkJyBjbGlwLXJ1bGU9J2V2ZW5vZGQnIGQ9J00yOS41MTkgMjMuOTY4IDEzLjMzOSA4LjQ2NiAxNi42NiA1bDE4IDE3LjI0NiAxLjgyMSAxLjc0NS0xLjgzMiAxLjczMi0xOCAxNy4wMi0zLjI5OC0zLjQ4N0wyOS41MiAyMy45NjhaJy8+PC9zdmc+"
+                />
+                <img
+                  style="margin-top: 130px;"
+                  v-on:click="nextLeftS()"
+                  class="circle-arrow-left-series"
+                  src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nNDgnIGhlaWdodD0nNDgnIGZpbGw9JyMwMDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZmlsbC1ydWxlPSdldmVub2RkJyBjbGlwLXJ1bGU9J2V2ZW5vZGQnIGQ9J00yOS41MTkgMjMuOTY4IDEzLjMzOSA4LjQ2NiAxNi42NiA1bDE4IDE3LjI0NiAxLjgyMSAxLjc0NS0xLjgzMiAxLjczMi0xOCAxNy4wMi0zLjI5OC0zLjQ4N0wyOS41MiAyMy45NjhaJy8+PC9zdmc+"
+                />
+
+                <div class="film-scroll-series" style="display: flex; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none;">
+                  <div
+                    v-for="seriesW in series" :key="seriesW.kinopoiskId" class="series-card" style="width: 330px; height: 344px;" v-on:click="cl(seriesW.kinopoiskId)">
+                    <div style="position: relative;">
+                    <img :src="seriesW.posterUrl" style="z-index: 1" />
+                    <span class="raitingF" style="font-size: 16px">{{ seriesW.ratingKinopoisk || seriesW.ratingImdb }} </span>
+                   </div>
+                  </div>
                 </div>
               </div>
             </div>
+
           
 
           <div style="display: flex; width: 600px; cursor: pointer; margin-top: 20px;">
@@ -333,7 +434,7 @@ body {
   border-radius: 50%;
   padding: 11px;
   position: absolute;
-  margin-top: 85px; 
+  margin-top: 110px; 
   margin-left: -18px; 
   cursor: pointer; 
   z-index: 2; 
@@ -356,7 +457,7 @@ body {
   border-radius: 50%;
   padding: 11px;
   position: absolute;
-  margin-top: 85px; 
+  margin-top: 110px; 
   margin-left: 918px; 
   cursor: pointer; 
   z-index: 2; 
@@ -417,6 +518,104 @@ body {
   transform: rotate(180deg);  
 }
 .circle-arrow-left-news:hover {
+  margin-left: -19px; 
+}
+
+.film-scroll-series::-webkit-scrollbar {
+      display: none;
+}
+.circle-arrow {
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 11px;
+  position: absolute;
+  margin-top: 85px; 
+  margin-left: 918px; 
+  cursor: pointer; 
+  z-index: 2; 
+  background-repeat: no-repeat;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .05), 
+              0 1px 0 1px rgba(0, 0, 0, .05), 
+              0 0 0 1px rgba(0, 0, 0, .05);
+  transition: margin-left 0.3s ease-in-out;
+  
+}
+.circle-arrow:hover {
+  margin-left: 919px; 
+}
+
+
+.circle-arrow-series-left
+{
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 11px;
+  position: absolute;
+  margin-top: 130px; 
+  margin-left: -18px; 
+  cursor: pointer; 
+  z-index: 2; 
+  background-repeat: no-repeat;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .05), 
+              0 1px 0 1px rgba(0, 0, 0, .05), 
+              0 0 0 1px rgba(0, 0, 0, .05);
+  transition: margin-left 0.3s ease-in-out;
+  transform: rotate(180deg);  
+}
+.circle-arrow-series-left:hover {
+  margin-left: -19px; 
+}
+
+.circle-arrow-series {
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 11px;
+  position: absolute;
+  margin-top: 130px; 
+  margin-left: 918px; 
+  cursor: pointer; 
+  z-index: 2; 
+  background-repeat: no-repeat;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .05), 
+              0 1px 0 1px rgba(0, 0, 0, .05), 
+              0 0 0 1px rgba(0, 0, 0, .05);
+  transition: margin-left 0.3s ease-in-out;
+  
+}
+.circle-arrow-series:hover {
+  margin-left: 919px; 
+}
+
+.circle-arrow-left-series
+{
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 11px;
+  position: absolute;
+  margin-top: 85px; 
+  margin-left: -18px; 
+  cursor: pointer; 
+  z-index: 2; 
+  background-repeat: no-repeat;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .05), 
+              0 1px 0 1px rgba(0, 0, 0, .05), 
+              0 0 0 1px rgba(0, 0, 0, .05);
+  transition: margin-left 0.3s ease-in-out;
+  transform: rotate(180deg);  
+}
+.circle-arrow-left-series:hover {
   margin-left: -19px; 
 }
 
@@ -543,10 +742,34 @@ body {
   display: inline-block;
   margin-left: 7px;
 }
+.news-card:hover img {
+  filter: brightness(0.5);
+  transition: filter 0.3s ease-in-out;
+}
 .news-card img {
   width: 229px;
   height: 294px;
 }
+
+.series-card {
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 7px;
+}
+.series-card:hover img {
+  filter: brightness(0.5);
+  transition: filter 0.3s ease-in-out;
+}
+.series-card:hover {
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 7px;
+}
+.series-card img {
+  width: 229px;
+  height: 335px;
+}
+
 .film-card img {
   width: 150px;
   height: 225px;
@@ -565,5 +788,16 @@ body {
 .film-info {
   padding: 8px;
   font-size: 14px;
+}
+.info {
+  position: relative;
+  width: 935px;
+  height: 1140px;
+  overflow: hidden;
+  padding: 0 50px 50px;
+  color: #fff;
+  background-color: #000;
+  margin-left: -45px;
+  
 }
 </style>
